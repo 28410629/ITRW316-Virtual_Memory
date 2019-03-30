@@ -98,7 +98,10 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBoxSelectedAlgorithm = new System.Windows.Forms.ComboBox();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.buttonStop = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.progressBarPhysical = new System.Windows.Forms.ProgressBar();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.progressBarSwap = new System.Windows.Forms.ProgressBar();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -107,6 +110,8 @@
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -116,7 +121,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(317, 330);
+            this.groupBox1.Size = new System.Drawing.Size(317, 384);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programs In Memory";
@@ -127,7 +132,7 @@
             this.groupBox7.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox7.Location = new System.Drawing.Point(6, 99);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(303, 225);
+            this.groupBox7.Size = new System.Drawing.Size(303, 279);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Information";
@@ -140,7 +145,7 @@
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInfo.Size = new System.Drawing.Size(291, 200);
+            this.textBoxInfo.Size = new System.Drawing.Size(291, 254);
             this.textBoxInfo.TabIndex = 0;
             // 
             // groupBox5
@@ -219,13 +224,14 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox2.Location = new System.Drawing.Point(335, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(462, 424);
+            this.groupBox2.Size = new System.Drawing.Size(462, 480);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Memory";
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.groupBox8);
             this.groupBox6.Controls.Add(this.buttonP28);
             this.groupBox6.Controls.Add(this.buttonP14);
             this.groupBox6.Controls.Add(this.buttonP27);
@@ -257,7 +263,7 @@
             this.groupBox6.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox6.Location = new System.Drawing.Point(6, 20);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(221, 398);
+            this.groupBox6.Size = new System.Drawing.Size(221, 453);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Physical Memory";
@@ -516,6 +522,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.groupBox9);
             this.groupBox4.Controls.Add(this.buttonS28);
             this.groupBox4.Controls.Add(this.buttonS15);
             this.groupBox4.Controls.Add(this.buttonS14);
@@ -547,7 +554,7 @@
             this.groupBox4.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox4.Location = new System.Drawing.Point(233, 19);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(221, 399);
+            this.groupBox4.Size = new System.Drawing.Size(221, 454);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Secondary Storage Paging";
@@ -808,10 +815,9 @@
             // 
             this.groupBox3.Controls.Add(this.comboBoxSelectedAlgorithm);
             this.groupBox3.Controls.Add(this.buttonReset);
-            this.groupBox3.Controls.Add(this.buttonStop);
             this.groupBox3.Controls.Add(this.buttonStart);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Location = new System.Drawing.Point(12, 348);
+            this.groupBox3.Location = new System.Drawing.Point(12, 404);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(317, 88);
             this.groupBox3.TabIndex = 1;
@@ -839,29 +845,55 @@
             // buttonReset
             // 
             this.buttonReset.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonReset.Location = new System.Drawing.Point(212, 19);
+            this.buttonReset.Location = new System.Drawing.Point(161, 19);
             this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(97, 34);
+            this.buttonReset.Size = new System.Drawing.Size(148, 34);
             this.buttonReset.TabIndex = 2;
             this.buttonReset.Text = "Reset";
             this.buttonReset.UseVisualStyleBackColor = true;
             // 
-            // buttonStop
+            // groupBox8
             // 
-            this.buttonStop.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonStop.Location = new System.Drawing.Point(109, 19);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(97, 34);
-            this.buttonStop.TabIndex = 1;
-            this.buttonStop.Text = "Stop";
-            this.buttonStop.UseVisualStyleBackColor = true;
+            this.groupBox8.Controls.Add(this.progressBarPhysical);
+            this.groupBox8.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox8.Location = new System.Drawing.Point(6, 397);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(209, 50);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Memory Used";
+            // 
+            // progressBarPhysical
+            // 
+            this.progressBarPhysical.Location = new System.Drawing.Point(6, 19);
+            this.progressBarPhysical.Name = "progressBarPhysical";
+            this.progressBarPhysical.Size = new System.Drawing.Size(197, 23);
+            this.progressBarPhysical.TabIndex = 0;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.progressBarSwap);
+            this.groupBox9.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox9.Location = new System.Drawing.Point(6, 398);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(209, 50);
+            this.groupBox9.TabIndex = 5;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Memory Used";
+            // 
+            // progressBarSwap
+            // 
+            this.progressBarSwap.Location = new System.Drawing.Point(6, 19);
+            this.progressBarSwap.Name = "progressBarSwap";
+            this.progressBarSwap.Size = new System.Drawing.Size(197, 23);
+            this.progressBarSwap.TabIndex = 0;
             // 
             // buttonStart
             // 
             this.buttonStart.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonStart.Location = new System.Drawing.Point(6, 19);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(97, 34);
+            this.buttonStart.Size = new System.Drawing.Size(148, 34);
             this.buttonStart.TabIndex = 0;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -872,12 +904,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(810, 446);
+            this.ClientSize = new System.Drawing.Size(810, 504);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(826, 485);
             this.MinimumSize = new System.Drawing.Size(826, 485);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -891,6 +922,8 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -901,8 +934,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button buttonReset;
-        private System.Windows.Forms.Button buttonStop;
-        private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox comboBoxSelectedAlgorithm;
@@ -969,6 +1000,11 @@
         private System.Windows.Forms.Button buttonS17;
         private System.Windows.Forms.Button buttonS13;
         private System.Windows.Forms.TextBox textBoxInfo;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.ProgressBar progressBarPhysical;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.ProgressBar progressBarSwap;
+        private System.Windows.Forms.Button buttonStart;
     }
 }
 
