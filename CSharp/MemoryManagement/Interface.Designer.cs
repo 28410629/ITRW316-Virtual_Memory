@@ -33,11 +33,12 @@
             this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.checkBoxProgramRandomSize = new System.Windows.Forms.CheckBox();
-            this.buttonProgramRemove = new System.Windows.Forms.Button();
             this.comboBoxProgramSelectedSize = new System.Windows.Forms.ComboBox();
             this.buttonProgramAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonP28 = new System.Windows.Forms.Button();
             this.buttonP14 = new System.Windows.Forms.Button();
             this.buttonP27 = new System.Windows.Forms.Button();
@@ -67,6 +68,8 @@
             this.buttonP15 = new System.Windows.Forms.Button();
             this.buttonP1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.buttonS28 = new System.Windows.Forms.Button();
             this.buttonS15 = new System.Windows.Forms.Button();
             this.buttonS14 = new System.Windows.Forms.Button();
@@ -96,22 +99,20 @@
             this.buttonS17 = new System.Windows.Forms.Button();
             this.buttonS13 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBoxSelectedAlgorithm = new System.Windows.Forms.ComboBox();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.progressBarPhysical = new System.Windows.Forms.ProgressBar();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.progressBarSwap = new System.Windows.Forms.ProgressBar();
             this.buttonStart = new System.Windows.Forms.Button();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.comboBoxSelectedAlgorithm = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -121,7 +122,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(317, 384);
+            this.groupBox1.Size = new System.Drawing.Size(317, 361);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programs In Memory";
@@ -132,7 +133,7 @@
             this.groupBox7.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox7.Location = new System.Drawing.Point(6, 99);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(303, 279);
+            this.groupBox7.Size = new System.Drawing.Size(303, 258);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Information";
@@ -145,13 +146,12 @@
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInfo.Size = new System.Drawing.Size(291, 254);
+            this.textBoxInfo.Size = new System.Drawing.Size(291, 233);
             this.textBoxInfo.TabIndex = 0;
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.checkBoxProgramRandomSize);
-            this.groupBox5.Controls.Add(this.buttonProgramRemove);
             this.groupBox5.Controls.Add(this.comboBoxProgramSelectedSize);
             this.groupBox5.Controls.Add(this.buttonProgramAdd);
             this.groupBox5.ForeColor = System.Drawing.SystemColors.Control;
@@ -172,16 +172,6 @@
             this.checkBoxProgramRandomSize.Text = "Random Size";
             this.checkBoxProgramRandomSize.UseVisualStyleBackColor = true;
             this.checkBoxProgramRandomSize.CheckedChanged += new System.EventHandler(this.checkBoxProgramRandomSize_CheckedChanged);
-            // 
-            // buttonProgramRemove
-            // 
-            this.buttonProgramRemove.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonProgramRemove.Location = new System.Drawing.Point(155, 44);
-            this.buttonProgramRemove.Name = "buttonProgramRemove";
-            this.buttonProgramRemove.Size = new System.Drawing.Size(142, 21);
-            this.buttonProgramRemove.TabIndex = 5;
-            this.buttonProgramRemove.Text = "Remove";
-            this.buttonProgramRemove.UseVisualStyleBackColor = true;
             // 
             // comboBoxProgramSelectedSize
             // 
@@ -212,9 +202,9 @@
             this.buttonProgramAdd.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonProgramAdd.Location = new System.Drawing.Point(6, 44);
             this.buttonProgramAdd.Name = "buttonProgramAdd";
-            this.buttonProgramAdd.Size = new System.Drawing.Size(142, 21);
+            this.buttonProgramAdd.Size = new System.Drawing.Size(291, 21);
             this.buttonProgramAdd.TabIndex = 4;
-            this.buttonProgramAdd.Text = "Add";
+            this.buttonProgramAdd.Text = "Manually Add Program";
             this.buttonProgramAdd.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -227,7 +217,7 @@
             this.groupBox2.Size = new System.Drawing.Size(462, 480);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Memory";
+            this.groupBox2.Text = "Memory - Statically Allocated";
             // 
             // groupBox6
             // 
@@ -267,6 +257,30 @@
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Physical Memory";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label1);
+            this.groupBox8.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox8.Location = new System.Drawing.Point(6, 397);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(209, 50);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Memory Used";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(61, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "0 bytes / 504 bytes";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonP28
             // 
@@ -559,6 +573,30 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Secondary Storage Paging";
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label2);
+            this.groupBox9.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox9.Location = new System.Drawing.Point(6, 398);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(209, 50);
+            this.groupBox9.TabIndex = 5;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Memory Used";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(59, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "0 bytes / 1120 bytes";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // buttonS28
             // 
             this.buttonS28.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -813,16 +851,48 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.comboBoxSelectedAlgorithm);
             this.groupBox3.Controls.Add(this.buttonReset);
             this.groupBox3.Controls.Add(this.buttonStart);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Location = new System.Drawing.Point(12, 404);
+            this.groupBox3.Location = new System.Drawing.Point(12, 379);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(317, 88);
+            this.groupBox3.Size = new System.Drawing.Size(317, 59);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Go!";
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonReset.Location = new System.Drawing.Point(161, 19);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(148, 34);
+            this.buttonReset.TabIndex = 2;
+            this.buttonReset.Text = "Reset";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonStart.Location = new System.Drawing.Point(6, 19);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(148, 34);
+            this.buttonStart.TabIndex = 0;
+            this.buttonStart.Text = "Start Simulation";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.comboBoxSelectedAlgorithm);
+            this.groupBox10.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox10.Location = new System.Drawing.Point(12, 444);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(317, 48);
+            this.groupBox10.TabIndex = 4;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Paging Algorithm";
             // 
             // comboBoxSelectedAlgorithm
             // 
@@ -836,80 +906,25 @@
             "Least Recently Used (LRU) Page Replacement Algorithm",
             "Optimal Page Replacement Algorithm",
             "Second-Chance Page Replacement Algorithm"});
-            this.comboBoxSelectedAlgorithm.Location = new System.Drawing.Point(6, 59);
+            this.comboBoxSelectedAlgorithm.Location = new System.Drawing.Point(6, 19);
             this.comboBoxSelectedAlgorithm.Name = "comboBoxSelectedAlgorithm";
             this.comboBoxSelectedAlgorithm.Size = new System.Drawing.Size(303, 21);
             this.comboBoxSelectedAlgorithm.Sorted = true;
             this.comboBoxSelectedAlgorithm.TabIndex = 3;
-            // 
-            // buttonReset
-            // 
-            this.buttonReset.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonReset.Location = new System.Drawing.Point(161, 19);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(148, 34);
-            this.buttonReset.TabIndex = 2;
-            this.buttonReset.Text = "Reset";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.progressBarPhysical);
-            this.groupBox8.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox8.Location = new System.Drawing.Point(6, 397);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(209, 50);
-            this.groupBox8.TabIndex = 4;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Memory Used";
-            // 
-            // progressBarPhysical
-            // 
-            this.progressBarPhysical.Location = new System.Drawing.Point(6, 19);
-            this.progressBarPhysical.Name = "progressBarPhysical";
-            this.progressBarPhysical.Size = new System.Drawing.Size(197, 23);
-            this.progressBarPhysical.TabIndex = 0;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.progressBarSwap);
-            this.groupBox9.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox9.Location = new System.Drawing.Point(6, 398);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(209, 50);
-            this.groupBox9.TabIndex = 5;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Memory Used";
-            // 
-            // progressBarSwap
-            // 
-            this.progressBarSwap.Location = new System.Drawing.Point(6, 19);
-            this.progressBarSwap.Name = "progressBarSwap";
-            this.progressBarSwap.Size = new System.Drawing.Size(197, 23);
-            this.progressBarSwap.TabIndex = 0;
-            // 
-            // buttonStart
-            // 
-            this.buttonStart.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonStart.Location = new System.Drawing.Point(6, 19);
-            this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(148, 34);
-            this.buttonStart.TabIndex = 0;
-            this.buttonStart.Text = "Start";
-            this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(810, 504);
+            this.ClientSize = new System.Drawing.Size(810, 506);
+            this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(826, 485);
+            this.MaximumSize = new System.Drawing.Size(826, 545);
+            this.MinimumSize = new System.Drawing.Size(826, 545);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "28410629 - Memory Application";
@@ -920,10 +935,13 @@
             this.groupBox5.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -936,10 +954,8 @@
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ComboBox comboBoxSelectedAlgorithm;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox checkBoxProgramRandomSize;
-        private System.Windows.Forms.Button buttonProgramRemove;
         private System.Windows.Forms.ComboBox comboBoxProgramSelectedSize;
         private System.Windows.Forms.Button buttonProgramAdd;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -1001,10 +1017,12 @@
         private System.Windows.Forms.Button buttonS13;
         private System.Windows.Forms.TextBox textBoxInfo;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.ProgressBar progressBarPhysical;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.ProgressBar progressBarSwap;
         private System.Windows.Forms.Button buttonStart;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.ComboBox comboBoxSelectedAlgorithm;
     }
 }
 
