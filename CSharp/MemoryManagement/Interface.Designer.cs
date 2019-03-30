@@ -38,7 +38,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelMemoryUsedP = new System.Windows.Forms.Label();
             this.buttonP28 = new System.Windows.Forms.Button();
             this.buttonP14 = new System.Windows.Forms.Button();
             this.buttonP27 = new System.Windows.Forms.Button();
@@ -69,7 +69,7 @@
             this.buttonP1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelMemoryUsedS = new System.Windows.Forms.Label();
             this.buttonS28 = new System.Windows.Forms.Button();
             this.buttonS15 = new System.Windows.Forms.Button();
             this.buttonS14 = new System.Windows.Forms.Button();
@@ -103,6 +103,10 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.comboBoxSelectedAlgorithm = new System.Windows.Forms.ComboBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.textBoxFrameSize = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.textBoxPageSize = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -113,6 +117,8 @@
             this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -122,7 +128,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(317, 361);
+            this.groupBox1.Size = new System.Drawing.Size(317, 416);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programs In Memory";
@@ -133,7 +139,7 @@
             this.groupBox7.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox7.Location = new System.Drawing.Point(6, 99);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(303, 258);
+            this.groupBox7.Size = new System.Drawing.Size(303, 311);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Information";
@@ -146,7 +152,7 @@
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInfo.Size = new System.Drawing.Size(291, 233);
+            this.textBoxInfo.Size = new System.Drawing.Size(291, 286);
             this.textBoxInfo.TabIndex = 0;
             // 
             // groupBox5
@@ -214,13 +220,14 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox2.Location = new System.Drawing.Point(335, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(462, 480);
+            this.groupBox2.Size = new System.Drawing.Size(462, 535);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Memory - Statically Allocated";
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.groupBox11);
             this.groupBox6.Controls.Add(this.groupBox8);
             this.groupBox6.Controls.Add(this.buttonP28);
             this.groupBox6.Controls.Add(this.buttonP14);
@@ -253,14 +260,14 @@
             this.groupBox6.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox6.Location = new System.Drawing.Point(6, 20);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(221, 453);
+            this.groupBox6.Size = new System.Drawing.Size(221, 508);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Physical Memory";
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.label1);
+            this.groupBox8.Controls.Add(this.labelMemoryUsedP);
             this.groupBox8.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox8.Location = new System.Drawing.Point(6, 397);
             this.groupBox8.Name = "groupBox8";
@@ -269,18 +276,18 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Memory Used";
             // 
-            // label1
+            // labelMemoryUsedP
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelMemoryUsedP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "0 bytes / 504 bytes";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelMemoryUsedP.AutoSize = true;
+            this.labelMemoryUsedP.Location = new System.Drawing.Point(61, 21);
+            this.labelMemoryUsedP.Name = "labelMemoryUsedP";
+            this.labelMemoryUsedP.Size = new System.Drawing.Size(98, 13);
+            this.labelMemoryUsedP.TabIndex = 0;
+            this.labelMemoryUsedP.Text = "0 bytes / 504 bytes";
+            this.labelMemoryUsedP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonP28
             // 
@@ -536,6 +543,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.groupBox12);
             this.groupBox4.Controls.Add(this.groupBox9);
             this.groupBox4.Controls.Add(this.buttonS28);
             this.groupBox4.Controls.Add(this.buttonS15);
@@ -568,14 +576,14 @@
             this.groupBox4.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox4.Location = new System.Drawing.Point(233, 19);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(221, 454);
+            this.groupBox4.Size = new System.Drawing.Size(221, 509);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Secondary Storage Paging";
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.label2);
+            this.groupBox9.Controls.Add(this.labelMemoryUsedS);
             this.groupBox9.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox9.Location = new System.Drawing.Point(6, 398);
             this.groupBox9.Name = "groupBox9";
@@ -584,18 +592,18 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Memory Used";
             // 
-            // label2
+            // labelMemoryUsedS
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelMemoryUsedS.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(59, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "0 bytes / 1120 bytes";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelMemoryUsedS.AutoSize = true;
+            this.labelMemoryUsedS.Location = new System.Drawing.Point(59, 21);
+            this.labelMemoryUsedS.Name = "labelMemoryUsedS";
+            this.labelMemoryUsedS.Size = new System.Drawing.Size(104, 13);
+            this.labelMemoryUsedS.TabIndex = 1;
+            this.labelMemoryUsedS.Text = "0 bytes / 1120 bytes";
+            this.labelMemoryUsedS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonS28
             // 
@@ -854,7 +862,7 @@
             this.groupBox3.Controls.Add(this.buttonReset);
             this.groupBox3.Controls.Add(this.buttonStart);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Location = new System.Drawing.Point(12, 379);
+            this.groupBox3.Location = new System.Drawing.Point(12, 488);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(317, 59);
             this.groupBox3.TabIndex = 1;
@@ -887,7 +895,7 @@
             // 
             this.groupBox10.Controls.Add(this.comboBoxSelectedAlgorithm);
             this.groupBox10.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox10.Location = new System.Drawing.Point(12, 444);
+            this.groupBox10.Location = new System.Drawing.Point(12, 434);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(317, 48);
             this.groupBox10.TabIndex = 4;
@@ -912,18 +920,55 @@
             this.comboBoxSelectedAlgorithm.Sorted = true;
             this.comboBoxSelectedAlgorithm.TabIndex = 3;
             // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.textBoxFrameSize);
+            this.groupBox11.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox11.Location = new System.Drawing.Point(6, 453);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(209, 47);
+            this.groupBox11.TabIndex = 5;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Frame Size";
+            // 
+            // textBoxFrameSize
+            // 
+            this.textBoxFrameSize.Location = new System.Drawing.Point(6, 19);
+            this.textBoxFrameSize.Name = "textBoxFrameSize";
+            this.textBoxFrameSize.Size = new System.Drawing.Size(197, 20);
+            this.textBoxFrameSize.TabIndex = 0;
+            this.textBoxFrameSize.TextChanged += new System.EventHandler(this.textBoxFrameSize_TextChanged);
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.textBoxPageSize);
+            this.groupBox12.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox12.Location = new System.Drawing.Point(6, 454);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(209, 47);
+            this.groupBox12.TabIndex = 6;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Page Size";
+            // 
+            // textBoxPageSize
+            // 
+            this.textBoxPageSize.Location = new System.Drawing.Point(6, 19);
+            this.textBoxPageSize.Name = "textBoxPageSize";
+            this.textBoxPageSize.Size = new System.Drawing.Size(197, 20);
+            this.textBoxPageSize.TabIndex = 0;
+            this.textBoxPageSize.TextChanged += new System.EventHandler(this.textBoxPageSize_TextChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(810, 506);
+            this.ClientSize = new System.Drawing.Size(813, 563);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(826, 545);
             this.MinimumSize = new System.Drawing.Size(826, 545);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -942,6 +987,10 @@
             this.groupBox9.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1019,10 +1068,14 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Button buttonStart;
-        public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label labelMemoryUsedP;
+        public System.Windows.Forms.Label labelMemoryUsedS;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.ComboBox comboBoxSelectedAlgorithm;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox textBoxFrameSize;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.TextBox textBoxPageSize;
     }
 }
 
