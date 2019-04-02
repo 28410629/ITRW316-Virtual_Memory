@@ -136,9 +136,12 @@
             this.buttonS39 = new System.Windows.Forms.Button();
             this.buttonS45 = new System.Windows.Forms.Button();
             this.buttonS41 = new System.Windows.Forms.Button();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -151,10 +154,12 @@
             this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox14);
             this.groupBox1.Controls.Add(this.groupBox7);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
@@ -169,9 +174,9 @@
             // 
             this.groupBox7.Controls.Add(this.textBoxInfo);
             this.groupBox7.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox7.Location = new System.Drawing.Point(6, 148);
+            this.groupBox7.Location = new System.Drawing.Point(6, 199);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(303, 262);
+            this.groupBox7.Size = new System.Drawing.Size(303, 211);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Information";
@@ -184,29 +189,26 @@
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInfo.Size = new System.Drawing.Size(291, 237);
+            this.textBoxInfo.Size = new System.Drawing.Size(291, 186);
             this.textBoxInfo.TabIndex = 0;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.checkBox1);
-            this.groupBox5.Controls.Add(this.comboBox1);
-            this.groupBox5.Controls.Add(this.button1);
             this.groupBox5.Controls.Add(this.checkBoxProgramRandomSize);
             this.groupBox5.Controls.Add(this.comboBoxProgramSelectedSize);
             this.groupBox5.Controls.Add(this.buttonProgramAdd);
             this.groupBox5.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox5.Location = new System.Drawing.Point(6, 20);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(303, 126);
+            this.groupBox5.Size = new System.Drawing.Size(303, 71);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Add/Read Program";
+            this.groupBox5.Text = "Add Program";
             // 
             // checkBoxProgramRandomSize
             // 
             this.checkBoxProgramRandomSize.AutoSize = true;
-            this.checkBoxProgramRandomSize.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxProgramRandomSize.Location = new System.Drawing.Point(6, 22);
             this.checkBoxProgramRandomSize.Name = "checkBoxProgramRandomSize";
             this.checkBoxProgramRandomSize.Size = new System.Drawing.Size(89, 17);
             this.checkBoxProgramRandomSize.TabIndex = 0;
@@ -657,7 +659,7 @@
             this.groupBox4.Size = new System.Drawing.Size(436, 509);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Secondary Storage Paging";
+            this.groupBox4.Text = "Secondary Storage - Swap Memory";
             // 
             // groupBox12
             // 
@@ -1279,14 +1281,29 @@
             this.buttonS41.TabIndex = 74;
             this.buttonS41.UseVisualStyleBackColor = true;
             // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.radioButton2);
+            this.groupBox14.Controls.Add(this.checkBox1);
+            this.groupBox14.Controls.Add(this.radioButton1);
+            this.groupBox14.Controls.Add(this.comboBox1);
+            this.groupBox14.Controls.Add(this.button1);
+            this.groupBox14.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox14.Location = new System.Drawing.Point(6, 97);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(303, 96);
+            this.groupBox14.TabIndex = 5;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Read Program";
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 73);
+            this.checkBox1.Location = new System.Drawing.Point(6, 46);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(99, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Random Select";
+            this.checkBox1.Size = new System.Drawing.Size(113, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Random Selection";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // comboBox1
@@ -1303,20 +1320,42 @@
             "32",
             "64",
             "128"});
-            this.comboBox1.Location = new System.Drawing.Point(111, 71);
+            this.comboBox1.Location = new System.Drawing.Point(125, 42);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(186, 21);
-            this.comboBox1.TabIndex = 6;
+            this.comboBox1.Size = new System.Drawing.Size(172, 21);
+            this.comboBox1.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(6, 98);
+            this.button1.Location = new System.Drawing.Point(6, 69);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(291, 21);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 4;
             this.button1.Text = "Read Program\'s Page";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 19);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(121, 17);
+            this.radioButton1.TabIndex = 5;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Global Replacement";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(133, 19);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(117, 17);
+            this.radioButton2.TabIndex = 6;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Local Replacement";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -1352,6 +1391,8 @@
             this.groupBox9.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1466,7 +1507,10 @@
         private System.Windows.Forms.Button buttonS39;
         private System.Windows.Forms.Button buttonS45;
         private System.Windows.Forms.Button buttonS41;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
     }
