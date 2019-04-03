@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomRead = new System.Windows.Forms.CheckBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.comboBoxReadProgram = new System.Windows.Forms.ComboBox();
             this.buttonReadProgram = new System.Windows.Forms.Button();
@@ -173,7 +173,7 @@
             // groupBox14
             // 
             this.groupBox14.Controls.Add(this.radioButton2);
-            this.groupBox14.Controls.Add(this.checkBox1);
+            this.groupBox14.Controls.Add(this.checkBoxRandomRead);
             this.groupBox14.Controls.Add(this.radioButton1);
             this.groupBox14.Controls.Add(this.comboBoxReadProgram);
             this.groupBox14.Controls.Add(this.buttonReadProgram);
@@ -196,15 +196,16 @@
             this.radioButton2.Text = "Local Replacement";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBoxRandomRead
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 46);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(113, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Random Selection";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxRandomRead.AutoSize = true;
+            this.checkBoxRandomRead.Location = new System.Drawing.Point(6, 46);
+            this.checkBoxRandomRead.Name = "checkBoxRandomRead";
+            this.checkBoxRandomRead.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxRandomRead.TabIndex = 0;
+            this.checkBoxRandomRead.Text = "Random Selection";
+            this.checkBoxRandomRead.UseVisualStyleBackColor = true;
+            this.checkBoxRandomRead.CheckedChanged += new System.EventHandler(this.CheckBoxRandomRead_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -223,14 +224,6 @@
             this.comboBoxReadProgram.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxReadProgram.ForeColor = System.Drawing.SystemColors.Window;
             this.comboBoxReadProgram.FormattingEnabled = true;
-            this.comboBoxReadProgram.Items.AddRange(new object[] {
-            "2",
-            "4",
-            "8",
-            "16",
-            "32",
-            "64",
-            "128"});
             this.comboBoxReadProgram.Location = new System.Drawing.Point(125, 42);
             this.comboBoxReadProgram.Name = "comboBoxReadProgram";
             this.comboBoxReadProgram.Size = new System.Drawing.Size(172, 21);
@@ -256,7 +249,7 @@
             this.groupBox7.Size = new System.Drawing.Size(303, 211);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Information";
+            this.groupBox7.Text = "Operations";
             // 
             // textBoxInfo
             // 
@@ -1502,7 +1495,7 @@
         private System.Windows.Forms.Button buttonS41;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxRandomRead;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ComboBox comboBoxReadProgram;
         private System.Windows.Forms.Button buttonReadProgram;
