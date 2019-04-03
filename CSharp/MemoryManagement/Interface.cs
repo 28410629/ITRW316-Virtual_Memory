@@ -17,13 +17,13 @@ namespace MemoryManagement
         private double _pageSize = 18;
         private double _frameSizeTotal = 28 * 18;
         private double _pageSizeTotal = 56 * 18;
-        private const int blockLimit = 27;
         private bool _programRandomSize = false;
         private Random random = new Random();
         private Button[] memoryPhysical;
         private Button[] memoryStorage;
         private int programName = 65;
         private List<double[]> programInformation = new List<double[]>();
+        private List<double[]> pageTable = new List<double[]>();
         private List<double[]> infoSwap = new List<double[]>();
         private int _sleepTime = 250;
         private bool isSimulation;
@@ -31,11 +31,13 @@ namespace MemoryManagement
         private int countUsedP = 0;
         private int countUsedS = 0;
         private double _num;
-        private int _storedName = 0; // stored variable references position in arrays
-        private int _storedPage = 1;
-        private int _storedSize = 2;
-        private int _storedStart = 3;
-        private int _storedStop = 4;
+        private const int _storedName = 0; // stored variable references position in arrays
+        private const int _storedPage = 1;
+        private const int _storedSize = 2;
+        private const int _storedStart = 3;
+        private const int _storedStop = 4;
+        private const int _storedPageFrag = 5;
+        private string _readProgramPage;
 
         // CONSTRUCTOR
 
@@ -49,7 +51,7 @@ namespace MemoryManagement
 
         private void textBoxFrameSize_TextChanged(object sender, EventArgs e)
         {
-            
+
             if (!double.TryParse(textBoxFrameSize.Text, out _num))
             {
                 MessageBox.Show("Please enter valid value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -91,6 +93,7 @@ namespace MemoryManagement
             checkBoxProgramRandomSize.Checked = true;
             buttonStart.Enabled = false;
             buttonProgramAdd.Enabled = false;
+            isSimulation = true;
             Thread thread = new Thread(new ThreadStart(addProgramThread));
             thread.Start();
         }
@@ -120,7 +123,6 @@ namespace MemoryManagement
         private void setup()
         {
             comboBoxProgramSelectedSize.SelectedIndex = 0;
-            comboBoxSelectedAlgorithm.SelectedIndex = 0;
             memoryPhysical = new Button[] { buttonP1, buttonP2, buttonP3, buttonP4, buttonP5, buttonP6, buttonP7,
                                              buttonP8, buttonP9, buttonP10, buttonP11, buttonP12, buttonP13, buttonP14,
                                              buttonP15, buttonP16, buttonP17, buttonP18, buttonP19, buttonP20, buttonP21,
@@ -147,7 +149,7 @@ namespace MemoryManagement
             textBoxFrameSize.Text = "" + 18;
             textBoxPageSize.Text = "" + 18;
 
-    }
+        }
 
         private void resetBlock(Button button)
         {
@@ -221,7 +223,132 @@ namespace MemoryManagement
             return startPosition;
         }
 
-        // MAIN METHOD, ADD PROGRAM TO MEMORY
+        private int readScanTLB(string programPage)
+        {
+            for (int i = 0; i < programInformation.Count; i++)
+            {
+
+                if (programPage == ((char)programInformation[i][_storedName] + "-" + programInformation[i][_storedPage]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        private int readScanPhysical()
+        {
+            string text = "";
+            for (int i = 0; i < programInformation.Count; i++)
+            {
+                text += "\n" + _readProgramPage + " = " + ((char)programInformation[i][_storedName] + "-" + programInformation[i][_storedPage]);
+                if (_readProgramPage == ((char)programInformation[i][_storedName] + "-" + programInformation[i][_storedPage]))
+                {
+                    return i;
+                }
+            }
+            MessageBox.Show(text);
+            return -1;
+        }
+
+        private bool readScanSwap()
+        {
+            int location = -1;
+            for (int i = 0; i < infoSwap.Count; i++)
+            {
+                if (_readProgramPage == ((char)infoSwap[i][_storedName] + "-" + infoSwap[i][_storedPage]))
+                {
+                    location = i;
+                }
+            }
+            if (location == -1)
+            {
+                return false; // not found in swap
+            }
+            else
+            {
+                double[] arr = infoSwap[location];
+                infoSwap.RemoveAt(location); // remove program from swap information
+
+                Color colour = Color.White;
+
+                for (int i = (int)arr[_storedStart]; i < (int)arr[_storedStop]; i++)
+                {
+                    colour = memoryStorage[i].BackColor;
+                }
+
+                removeProgram((int)arr[_storedStart], (int)arr[_storedStop], memoryStorage); // drop program from swap 
+                string pName = (char)arr[_storedName] + "-" + arr[_storedPage];
+                double pSize = arr[_storedSize];
+
+                int start = scanSpace(1, memoryPhysical); // scan for space
+                bool couldHelp = true; // should find better method
+
+                while (start == -1 && couldHelp) // if no space, move to swap according to paging algorithm
+                {
+                    couldHelp = FIFO();
+                    start = scanSpace(1, memoryPhysical);
+                }
+
+                if (start != -1) // add program to ram
+                {
+                    int end = start + 1;
+
+                    for (int i = start; i < end; i++)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            memoryPhysical[i].Text = pName + " : " + pSize;
+                            memoryPhysical[i].ForeColor = Color.White;
+                            memoryPhysical[i].BackColor = colour;
+                        });
+                        Thread.Sleep(_sleepTime);
+                    }
+
+                    // add details to list
+                    programInformation.Add(new double[] { arr[_storedName], arr[_storedPage], pSize, start, end }); // position
+                    
+                }
+                else
+                {
+                    displayMessage("Program " + pName + " could not be added.");
+                }
+                return true;
+            }
+            
+        }
+
+        // MAIN METHODS, ADD OR READ PROGRAM TO MEMORY
+
+        private void readProgramThread()
+        {
+            int location;
+            // check tlb
+
+            // check memory if cant find it is page fault
+            location = readScanPhysical();
+            if (location == -1)
+            {
+                bool found = readScanSwap();
+                if (found)
+                {
+                    location = readScanPhysical();
+                    displayMessage("Page " + _readProgramPage + " read in memory\nat memory " + location);
+                }
+                else
+                {
+                    displayMessage("Page " + _readProgramPage + " unavailable, it was dropped in swap.");
+                }
+            }
+            else
+            {
+                displayMessage("Page " + _readProgramPage + " read in memory\nat memory " + location);
+                // add fragmentation/size
+            }
+
+            // update tlb
+            // end
+        }
 
         private void addProgramThread()
         {
@@ -259,9 +386,10 @@ namespace MemoryManagement
                     });
                 }
                 string pName = ""; // new program name
-                Color color = Color.FromArgb(random.Next(14,129), random.Next(14, 129), random.Next(14, 129)); // new program colour
+                Color color = Color.FromArgb(random.Next(14, 129), random.Next(14, 129), random.Next(14, 129)); // new program colour
                 int pBlocks = (int)Math.Ceiling(pSize / _frameSize); // amount of blocks to allocate to the program
-
+                //double pfrag = pSize % _frameSize;
+                //MessageBox.Show("frag : " + (pSize % _frameSize));
 
                 for (int j = 0; j < pBlocks; j++)
                 {
@@ -279,7 +407,6 @@ namespace MemoryManagement
                     {
                         int end = start + 1;
 
-
                         for (int i = start; i < end; i++)
                         {
                             this.Invoke((MethodInvoker)delegate
@@ -293,14 +420,20 @@ namespace MemoryManagement
 
                         // add details to list
                         programInformation.Add(new double[] { programName, j, pSize, start, end }); // position
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            comboBoxReadProgram.Items.Add(pName);
+                        });
+                       
                     }
                     else
                     {
+                        
                         displayMessage("Program " + pName + " could not be added.");
                     }
                 }
 
-                displayMessage("Program " + pName + " is added to ram.");
+                displayMessage("Program " + (char)programName + " is added to ram.");
 
                 programName++;
                 if (programName == 91)
@@ -308,21 +441,33 @@ namespace MemoryManagement
                     AddProgram = false;
                 }
 
-                this.Invoke((MethodInvoker)delegate
+                if (isSimulation)
                 {
-                    buttonStart.Enabled = true;
-                    buttonStart.PerformClick(); // this will be used to make a simulation
-                });
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        buttonStart.Enabled = true;
+                        buttonStart.PerformClick(); // this will be used to make a simulation
+                    });
+                }
+                else
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        buttonProgramAdd.Enabled = true;
+                    });
+                }
+                
             }
             else
             {
+                isSimulation = false;
                 if (MessageBox.Show("Reset required. Press 'Yes' to reset.", "Simulation End", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
                         buttonReset.PerformClick();
                     });
-                } 
+                }
             }
         }
 
@@ -347,12 +492,11 @@ namespace MemoryManagement
             if (programInformation.Count > 0)
             {
                 // determine program to be moved to swap
-                double programSize = programInformation[0][_storedSize];
-                int blockRequired = (int)Math.Ceiling(programInformation[0][_storedSize] / _pageSize);
+                
+                
 
                 // where it should be located
-                for (int i = 0; i < blockRequired; i++)
-                {
+                
                     int start = scanSpace(1, memoryStorage);
                     while (start == -1)
                     {
@@ -397,15 +541,31 @@ namespace MemoryManagement
                     programInformation[0][_storedStop] = end;
                     infoSwap.Add(programInformation[0]);
                     programInformation.RemoveAt(0);
-                }
                 
-
                 return true;
             }
             else
             {
                 return false;
             }
+        }
+
+        private void ButtonProgramAdd_Click(object sender, EventArgs e)
+        {
+            buttonStart.Enabled = false;
+            buttonProgramAdd.Enabled = false;
+            isSimulation = false;
+            Thread thread = new Thread(new ThreadStart(addProgramThread));
+            thread.Start();
+        }
+
+        private void ButtonReadProgram_Click(object sender, EventArgs e)
+        {
+            buttonStart.Enabled = false;
+            buttonProgramAdd.Enabled = false;
+            _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
+            Thread thread = new Thread(new ThreadStart(readProgramThread));
+            thread.Start();
         }
     }
 }

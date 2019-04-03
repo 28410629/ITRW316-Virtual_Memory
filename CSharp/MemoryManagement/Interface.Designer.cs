@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.comboBoxReadProgram = new System.Windows.Forms.ComboBox();
+            this.buttonReadProgram = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -36,6 +42,7 @@
             this.comboBoxProgramSelectedSize = new System.Windows.Forms.ComboBox();
             this.buttonProgramAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.textBoxFrameSize = new System.Windows.Forms.TextBox();
@@ -70,6 +77,34 @@
             this.buttonP15 = new System.Windows.Forms.Button();
             this.buttonP1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.buttonS56 = new System.Windows.Forms.Button();
+            this.buttonS43 = new System.Windows.Forms.Button();
+            this.buttonS42 = new System.Windows.Forms.Button();
+            this.buttonS29 = new System.Windows.Forms.Button();
+            this.buttonS55 = new System.Windows.Forms.Button();
+            this.buttonS31 = new System.Windows.Forms.Button();
+            this.buttonS53 = new System.Windows.Forms.Button();
+            this.buttonS30 = new System.Windows.Forms.Button();
+            this.buttonS54 = new System.Windows.Forms.Button();
+            this.buttonS32 = new System.Windows.Forms.Button();
+            this.buttonS52 = new System.Windows.Forms.Button();
+            this.buttonS34 = new System.Windows.Forms.Button();
+            this.buttonS50 = new System.Windows.Forms.Button();
+            this.buttonS33 = new System.Windows.Forms.Button();
+            this.buttonS51 = new System.Windows.Forms.Button();
+            this.buttonS35 = new System.Windows.Forms.Button();
+            this.buttonS49 = new System.Windows.Forms.Button();
+            this.buttonS37 = new System.Windows.Forms.Button();
+            this.buttonS47 = new System.Windows.Forms.Button();
+            this.buttonS36 = new System.Windows.Forms.Button();
+            this.buttonS48 = new System.Windows.Forms.Button();
+            this.buttonS38 = new System.Windows.Forms.Button();
+            this.buttonS46 = new System.Windows.Forms.Button();
+            this.buttonS40 = new System.Windows.Forms.Button();
+            this.buttonS44 = new System.Windows.Forms.Button();
+            this.buttonS39 = new System.Windows.Forms.Button();
+            this.buttonS45 = new System.Windows.Forms.Button();
+            this.buttonS41 = new System.Windows.Forms.Button();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.textBoxPageSize = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -106,43 +141,9 @@
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.comboBoxSelectedAlgorithm = new System.Windows.Forms.ComboBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.buttonS56 = new System.Windows.Forms.Button();
-            this.buttonS43 = new System.Windows.Forms.Button();
-            this.buttonS42 = new System.Windows.Forms.Button();
-            this.buttonS29 = new System.Windows.Forms.Button();
-            this.buttonS55 = new System.Windows.Forms.Button();
-            this.buttonS31 = new System.Windows.Forms.Button();
-            this.buttonS53 = new System.Windows.Forms.Button();
-            this.buttonS30 = new System.Windows.Forms.Button();
-            this.buttonS54 = new System.Windows.Forms.Button();
-            this.buttonS32 = new System.Windows.Forms.Button();
-            this.buttonS52 = new System.Windows.Forms.Button();
-            this.buttonS34 = new System.Windows.Forms.Button();
-            this.buttonS50 = new System.Windows.Forms.Button();
-            this.buttonS33 = new System.Windows.Forms.Button();
-            this.buttonS51 = new System.Windows.Forms.Button();
-            this.buttonS35 = new System.Windows.Forms.Button();
-            this.buttonS49 = new System.Windows.Forms.Button();
-            this.buttonS37 = new System.Windows.Forms.Button();
-            this.buttonS47 = new System.Windows.Forms.Button();
-            this.buttonS36 = new System.Windows.Forms.Button();
-            this.buttonS48 = new System.Windows.Forms.Button();
-            this.buttonS38 = new System.Windows.Forms.Button();
-            this.buttonS46 = new System.Windows.Forms.Button();
-            this.buttonS40 = new System.Windows.Forms.Button();
-            this.buttonS44 = new System.Windows.Forms.Button();
-            this.buttonS39 = new System.Windows.Forms.Button();
-            this.buttonS45 = new System.Windows.Forms.Button();
-            this.buttonS41 = new System.Windows.Forms.Button();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -154,7 +155,6 @@
             this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            this.groupBox14.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -169,6 +169,83 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programs In Memory";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.radioButton2);
+            this.groupBox14.Controls.Add(this.checkBox1);
+            this.groupBox14.Controls.Add(this.radioButton1);
+            this.groupBox14.Controls.Add(this.comboBoxReadProgram);
+            this.groupBox14.Controls.Add(this.buttonReadProgram);
+            this.groupBox14.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox14.Location = new System.Drawing.Point(6, 97);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(303, 96);
+            this.groupBox14.TabIndex = 5;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Read Program";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(133, 19);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(117, 17);
+            this.radioButton2.TabIndex = 6;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Local Replacement";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 46);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(113, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Random Selection";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 19);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(121, 17);
+            this.radioButton1.TabIndex = 5;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Global Replacement";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxReadProgram
+            // 
+            this.comboBoxReadProgram.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.comboBoxReadProgram.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxReadProgram.ForeColor = System.Drawing.SystemColors.Window;
+            this.comboBoxReadProgram.FormattingEnabled = true;
+            this.comboBoxReadProgram.Items.AddRange(new object[] {
+            "2",
+            "4",
+            "8",
+            "16",
+            "32",
+            "64",
+            "128"});
+            this.comboBoxReadProgram.Location = new System.Drawing.Point(125, 42);
+            this.comboBoxReadProgram.Name = "comboBoxReadProgram";
+            this.comboBoxReadProgram.Size = new System.Drawing.Size(172, 21);
+            this.comboBoxReadProgram.TabIndex = 1;
+            // 
+            // buttonReadProgram
+            // 
+            this.buttonReadProgram.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonReadProgram.Location = new System.Drawing.Point(6, 69);
+            this.buttonReadProgram.Name = "buttonReadProgram";
+            this.buttonReadProgram.Size = new System.Drawing.Size(291, 21);
+            this.buttonReadProgram.TabIndex = 4;
+            this.buttonReadProgram.Text = "Read Program\'s Page";
+            this.buttonReadProgram.UseVisualStyleBackColor = true;
+            this.buttonReadProgram.Click += new System.EventHandler(this.ButtonReadProgram_Click);
             // 
             // groupBox7
             // 
@@ -244,6 +321,7 @@
             this.buttonProgramAdd.TabIndex = 4;
             this.buttonProgramAdd.Text = "Manually Add Program";
             this.buttonProgramAdd.UseVisualStyleBackColor = true;
+            this.buttonProgramAdd.Click += new System.EventHandler(this.ButtonProgramAdd_Click);
             // 
             // groupBox2
             // 
@@ -257,6 +335,16 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Memory - Statically Allocated";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox13.Location = new System.Drawing.Point(233, 93);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(221, 358);
+            this.groupBox13.TabIndex = 33;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "TLB";
             // 
             // groupBox6
             // 
@@ -661,6 +749,258 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Secondary Storage - Swap Memory";
             // 
+            // buttonS56
+            // 
+            this.buttonS56.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS56.Location = new System.Drawing.Point(328, 371);
+            this.buttonS56.Name = "buttonS56";
+            this.buttonS56.Size = new System.Drawing.Size(102, 21);
+            this.buttonS56.TabIndex = 88;
+            this.buttonS56.UseVisualStyleBackColor = true;
+            // 
+            // buttonS43
+            // 
+            this.buttonS43.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS43.Location = new System.Drawing.Point(328, 20);
+            this.buttonS43.Name = "buttonS43";
+            this.buttonS43.Size = new System.Drawing.Size(102, 21);
+            this.buttonS43.TabIndex = 62;
+            this.buttonS43.UseVisualStyleBackColor = true;
+            // 
+            // buttonS42
+            // 
+            this.buttonS42.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS42.Location = new System.Drawing.Point(221, 371);
+            this.buttonS42.Name = "buttonS42";
+            this.buttonS42.Size = new System.Drawing.Size(102, 21);
+            this.buttonS42.TabIndex = 87;
+            this.buttonS42.UseVisualStyleBackColor = true;
+            // 
+            // buttonS29
+            // 
+            this.buttonS29.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS29.Location = new System.Drawing.Point(221, 20);
+            this.buttonS29.Name = "buttonS29";
+            this.buttonS29.Size = new System.Drawing.Size(102, 21);
+            this.buttonS29.TabIndex = 61;
+            this.buttonS29.UseVisualStyleBackColor = true;
+            // 
+            // buttonS55
+            // 
+            this.buttonS55.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS55.Location = new System.Drawing.Point(328, 344);
+            this.buttonS55.Name = "buttonS55";
+            this.buttonS55.Size = new System.Drawing.Size(102, 21);
+            this.buttonS55.TabIndex = 86;
+            this.buttonS55.UseVisualStyleBackColor = true;
+            // 
+            // buttonS31
+            // 
+            this.buttonS31.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS31.Location = new System.Drawing.Point(221, 74);
+            this.buttonS31.Name = "buttonS31";
+            this.buttonS31.Size = new System.Drawing.Size(102, 21);
+            this.buttonS31.TabIndex = 63;
+            this.buttonS31.UseVisualStyleBackColor = true;
+            // 
+            // buttonS53
+            // 
+            this.buttonS53.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS53.Location = new System.Drawing.Point(328, 290);
+            this.buttonS53.Name = "buttonS53";
+            this.buttonS53.Size = new System.Drawing.Size(102, 21);
+            this.buttonS53.TabIndex = 85;
+            this.buttonS53.UseVisualStyleBackColor = true;
+            // 
+            // buttonS30
+            // 
+            this.buttonS30.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS30.Location = new System.Drawing.Point(221, 47);
+            this.buttonS30.Name = "buttonS30";
+            this.buttonS30.Size = new System.Drawing.Size(102, 21);
+            this.buttonS30.TabIndex = 64;
+            this.buttonS30.UseVisualStyleBackColor = true;
+            // 
+            // buttonS54
+            // 
+            this.buttonS54.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS54.Location = new System.Drawing.Point(328, 317);
+            this.buttonS54.Name = "buttonS54";
+            this.buttonS54.Size = new System.Drawing.Size(102, 21);
+            this.buttonS54.TabIndex = 84;
+            this.buttonS54.UseVisualStyleBackColor = true;
+            // 
+            // buttonS32
+            // 
+            this.buttonS32.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS32.Location = new System.Drawing.Point(221, 101);
+            this.buttonS32.Name = "buttonS32";
+            this.buttonS32.Size = new System.Drawing.Size(102, 21);
+            this.buttonS32.TabIndex = 65;
+            this.buttonS32.UseVisualStyleBackColor = true;
+            // 
+            // buttonS52
+            // 
+            this.buttonS52.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS52.Location = new System.Drawing.Point(328, 263);
+            this.buttonS52.Name = "buttonS52";
+            this.buttonS52.Size = new System.Drawing.Size(102, 21);
+            this.buttonS52.TabIndex = 83;
+            this.buttonS52.UseVisualStyleBackColor = true;
+            // 
+            // buttonS34
+            // 
+            this.buttonS34.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS34.Location = new System.Drawing.Point(221, 155);
+            this.buttonS34.Name = "buttonS34";
+            this.buttonS34.Size = new System.Drawing.Size(102, 21);
+            this.buttonS34.TabIndex = 66;
+            this.buttonS34.UseVisualStyleBackColor = true;
+            // 
+            // buttonS50
+            // 
+            this.buttonS50.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS50.Location = new System.Drawing.Point(328, 209);
+            this.buttonS50.Name = "buttonS50";
+            this.buttonS50.Size = new System.Drawing.Size(102, 21);
+            this.buttonS50.TabIndex = 82;
+            this.buttonS50.UseVisualStyleBackColor = true;
+            // 
+            // buttonS33
+            // 
+            this.buttonS33.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS33.Location = new System.Drawing.Point(221, 128);
+            this.buttonS33.Name = "buttonS33";
+            this.buttonS33.Size = new System.Drawing.Size(102, 21);
+            this.buttonS33.TabIndex = 67;
+            this.buttonS33.UseVisualStyleBackColor = true;
+            // 
+            // buttonS51
+            // 
+            this.buttonS51.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS51.Location = new System.Drawing.Point(328, 236);
+            this.buttonS51.Name = "buttonS51";
+            this.buttonS51.Size = new System.Drawing.Size(102, 21);
+            this.buttonS51.TabIndex = 81;
+            this.buttonS51.UseVisualStyleBackColor = true;
+            // 
+            // buttonS35
+            // 
+            this.buttonS35.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS35.Location = new System.Drawing.Point(221, 182);
+            this.buttonS35.Name = "buttonS35";
+            this.buttonS35.Size = new System.Drawing.Size(102, 21);
+            this.buttonS35.TabIndex = 68;
+            this.buttonS35.UseVisualStyleBackColor = true;
+            // 
+            // buttonS49
+            // 
+            this.buttonS49.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS49.Location = new System.Drawing.Point(328, 182);
+            this.buttonS49.Name = "buttonS49";
+            this.buttonS49.Size = new System.Drawing.Size(102, 21);
+            this.buttonS49.TabIndex = 80;
+            this.buttonS49.UseVisualStyleBackColor = true;
+            // 
+            // buttonS37
+            // 
+            this.buttonS37.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS37.Location = new System.Drawing.Point(221, 236);
+            this.buttonS37.Name = "buttonS37";
+            this.buttonS37.Size = new System.Drawing.Size(102, 21);
+            this.buttonS37.TabIndex = 69;
+            this.buttonS37.UseVisualStyleBackColor = true;
+            // 
+            // buttonS47
+            // 
+            this.buttonS47.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS47.Location = new System.Drawing.Point(328, 128);
+            this.buttonS47.Name = "buttonS47";
+            this.buttonS47.Size = new System.Drawing.Size(102, 21);
+            this.buttonS47.TabIndex = 79;
+            this.buttonS47.UseVisualStyleBackColor = true;
+            // 
+            // buttonS36
+            // 
+            this.buttonS36.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS36.Location = new System.Drawing.Point(221, 209);
+            this.buttonS36.Name = "buttonS36";
+            this.buttonS36.Size = new System.Drawing.Size(102, 21);
+            this.buttonS36.TabIndex = 70;
+            this.buttonS36.UseVisualStyleBackColor = true;
+            // 
+            // buttonS48
+            // 
+            this.buttonS48.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS48.Location = new System.Drawing.Point(328, 155);
+            this.buttonS48.Name = "buttonS48";
+            this.buttonS48.Size = new System.Drawing.Size(102, 21);
+            this.buttonS48.TabIndex = 78;
+            this.buttonS48.UseVisualStyleBackColor = true;
+            // 
+            // buttonS38
+            // 
+            this.buttonS38.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS38.Location = new System.Drawing.Point(221, 263);
+            this.buttonS38.Name = "buttonS38";
+            this.buttonS38.Size = new System.Drawing.Size(102, 21);
+            this.buttonS38.TabIndex = 71;
+            this.buttonS38.UseVisualStyleBackColor = true;
+            // 
+            // buttonS46
+            // 
+            this.buttonS46.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS46.Location = new System.Drawing.Point(328, 101);
+            this.buttonS46.Name = "buttonS46";
+            this.buttonS46.Size = new System.Drawing.Size(102, 21);
+            this.buttonS46.TabIndex = 77;
+            this.buttonS46.UseVisualStyleBackColor = true;
+            // 
+            // buttonS40
+            // 
+            this.buttonS40.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS40.Location = new System.Drawing.Point(221, 317);
+            this.buttonS40.Name = "buttonS40";
+            this.buttonS40.Size = new System.Drawing.Size(102, 21);
+            this.buttonS40.TabIndex = 72;
+            this.buttonS40.UseVisualStyleBackColor = true;
+            // 
+            // buttonS44
+            // 
+            this.buttonS44.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS44.Location = new System.Drawing.Point(328, 47);
+            this.buttonS44.Name = "buttonS44";
+            this.buttonS44.Size = new System.Drawing.Size(102, 21);
+            this.buttonS44.TabIndex = 76;
+            this.buttonS44.UseVisualStyleBackColor = true;
+            // 
+            // buttonS39
+            // 
+            this.buttonS39.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS39.Location = new System.Drawing.Point(221, 290);
+            this.buttonS39.Name = "buttonS39";
+            this.buttonS39.Size = new System.Drawing.Size(102, 21);
+            this.buttonS39.TabIndex = 73;
+            this.buttonS39.UseVisualStyleBackColor = true;
+            // 
+            // buttonS45
+            // 
+            this.buttonS45.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS45.Location = new System.Drawing.Point(328, 74);
+            this.buttonS45.Name = "buttonS45";
+            this.buttonS45.Size = new System.Drawing.Size(102, 21);
+            this.buttonS45.TabIndex = 75;
+            this.buttonS45.UseVisualStyleBackColor = true;
+            // 
+            // buttonS41
+            // 
+            this.buttonS41.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonS41.Location = new System.Drawing.Point(221, 344);
+            this.buttonS41.Name = "buttonS41";
+            this.buttonS41.Size = new System.Drawing.Size(102, 21);
+            this.buttonS41.TabIndex = 74;
+            this.buttonS41.UseVisualStyleBackColor = true;
+            // 
             // groupBox12
             // 
             this.groupBox12.Controls.Add(this.textBoxPageSize);
@@ -992,370 +1332,23 @@
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.comboBoxSelectedAlgorithm);
+            this.groupBox10.Controls.Add(this.label1);
             this.groupBox10.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox10.Location = new System.Drawing.Point(12, 434);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(317, 48);
             this.groupBox10.TabIndex = 4;
             this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Paging Algorithm";
-            // 
-            // comboBoxSelectedAlgorithm
-            // 
-            this.comboBoxSelectedAlgorithm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.comboBoxSelectedAlgorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSelectedAlgorithm.ForeColor = System.Drawing.SystemColors.Window;
-            this.comboBoxSelectedAlgorithm.FormattingEnabled = true;
-            this.comboBoxSelectedAlgorithm.Items.AddRange(new object[] {
-            "Clock Page Replacement Algorithm",
-            "First-In, First-Out (FIFO) Page Replacement Algorithm",
-            "Least Recently Used (LRU) Page Replacement Algorithm",
-            "Optimal Page Replacement Algorithm",
-            "Second-Chance Page Replacement Algorithm"});
-            this.comboBoxSelectedAlgorithm.Location = new System.Drawing.Point(6, 19);
-            this.comboBoxSelectedAlgorithm.Name = "comboBoxSelectedAlgorithm";
-            this.comboBoxSelectedAlgorithm.Size = new System.Drawing.Size(303, 21);
-            this.comboBoxSelectedAlgorithm.Sorted = true;
-            this.comboBoxSelectedAlgorithm.TabIndex = 3;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox13.Location = new System.Drawing.Point(233, 93);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(221, 358);
-            this.groupBox13.TabIndex = 33;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "TLB";
-            // 
-            // buttonS56
-            // 
-            this.buttonS56.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS56.Location = new System.Drawing.Point(328, 371);
-            this.buttonS56.Name = "buttonS56";
-            this.buttonS56.Size = new System.Drawing.Size(102, 21);
-            this.buttonS56.TabIndex = 88;
-            this.buttonS56.UseVisualStyleBackColor = true;
-            // 
-            // buttonS43
-            // 
-            this.buttonS43.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS43.Location = new System.Drawing.Point(328, 20);
-            this.buttonS43.Name = "buttonS43";
-            this.buttonS43.Size = new System.Drawing.Size(102, 21);
-            this.buttonS43.TabIndex = 62;
-            this.buttonS43.UseVisualStyleBackColor = true;
-            // 
-            // buttonS42
-            // 
-            this.buttonS42.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS42.Location = new System.Drawing.Point(221, 371);
-            this.buttonS42.Name = "buttonS42";
-            this.buttonS42.Size = new System.Drawing.Size(102, 21);
-            this.buttonS42.TabIndex = 87;
-            this.buttonS42.UseVisualStyleBackColor = true;
-            // 
-            // buttonS29
-            // 
-            this.buttonS29.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS29.Location = new System.Drawing.Point(221, 20);
-            this.buttonS29.Name = "buttonS29";
-            this.buttonS29.Size = new System.Drawing.Size(102, 21);
-            this.buttonS29.TabIndex = 61;
-            this.buttonS29.UseVisualStyleBackColor = true;
-            // 
-            // buttonS55
-            // 
-            this.buttonS55.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS55.Location = new System.Drawing.Point(328, 344);
-            this.buttonS55.Name = "buttonS55";
-            this.buttonS55.Size = new System.Drawing.Size(102, 21);
-            this.buttonS55.TabIndex = 86;
-            this.buttonS55.UseVisualStyleBackColor = true;
-            // 
-            // buttonS31
-            // 
-            this.buttonS31.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS31.Location = new System.Drawing.Point(221, 74);
-            this.buttonS31.Name = "buttonS31";
-            this.buttonS31.Size = new System.Drawing.Size(102, 21);
-            this.buttonS31.TabIndex = 63;
-            this.buttonS31.UseVisualStyleBackColor = true;
-            // 
-            // buttonS53
-            // 
-            this.buttonS53.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS53.Location = new System.Drawing.Point(328, 290);
-            this.buttonS53.Name = "buttonS53";
-            this.buttonS53.Size = new System.Drawing.Size(102, 21);
-            this.buttonS53.TabIndex = 85;
-            this.buttonS53.UseVisualStyleBackColor = true;
-            // 
-            // buttonS30
-            // 
-            this.buttonS30.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS30.Location = new System.Drawing.Point(221, 47);
-            this.buttonS30.Name = "buttonS30";
-            this.buttonS30.Size = new System.Drawing.Size(102, 21);
-            this.buttonS30.TabIndex = 64;
-            this.buttonS30.UseVisualStyleBackColor = true;
-            // 
-            // buttonS54
-            // 
-            this.buttonS54.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS54.Location = new System.Drawing.Point(328, 317);
-            this.buttonS54.Name = "buttonS54";
-            this.buttonS54.Size = new System.Drawing.Size(102, 21);
-            this.buttonS54.TabIndex = 84;
-            this.buttonS54.UseVisualStyleBackColor = true;
-            // 
-            // buttonS32
-            // 
-            this.buttonS32.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS32.Location = new System.Drawing.Point(221, 101);
-            this.buttonS32.Name = "buttonS32";
-            this.buttonS32.Size = new System.Drawing.Size(102, 21);
-            this.buttonS32.TabIndex = 65;
-            this.buttonS32.UseVisualStyleBackColor = true;
-            // 
-            // buttonS52
-            // 
-            this.buttonS52.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS52.Location = new System.Drawing.Point(328, 263);
-            this.buttonS52.Name = "buttonS52";
-            this.buttonS52.Size = new System.Drawing.Size(102, 21);
-            this.buttonS52.TabIndex = 83;
-            this.buttonS52.UseVisualStyleBackColor = true;
-            // 
-            // buttonS34
-            // 
-            this.buttonS34.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS34.Location = new System.Drawing.Point(221, 155);
-            this.buttonS34.Name = "buttonS34";
-            this.buttonS34.Size = new System.Drawing.Size(102, 21);
-            this.buttonS34.TabIndex = 66;
-            this.buttonS34.UseVisualStyleBackColor = true;
-            // 
-            // buttonS50
-            // 
-            this.buttonS50.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS50.Location = new System.Drawing.Point(328, 209);
-            this.buttonS50.Name = "buttonS50";
-            this.buttonS50.Size = new System.Drawing.Size(102, 21);
-            this.buttonS50.TabIndex = 82;
-            this.buttonS50.UseVisualStyleBackColor = true;
-            // 
-            // buttonS33
-            // 
-            this.buttonS33.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS33.Location = new System.Drawing.Point(221, 128);
-            this.buttonS33.Name = "buttonS33";
-            this.buttonS33.Size = new System.Drawing.Size(102, 21);
-            this.buttonS33.TabIndex = 67;
-            this.buttonS33.UseVisualStyleBackColor = true;
-            // 
-            // buttonS51
-            // 
-            this.buttonS51.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS51.Location = new System.Drawing.Point(328, 236);
-            this.buttonS51.Name = "buttonS51";
-            this.buttonS51.Size = new System.Drawing.Size(102, 21);
-            this.buttonS51.TabIndex = 81;
-            this.buttonS51.UseVisualStyleBackColor = true;
-            // 
-            // buttonS35
-            // 
-            this.buttonS35.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS35.Location = new System.Drawing.Point(221, 182);
-            this.buttonS35.Name = "buttonS35";
-            this.buttonS35.Size = new System.Drawing.Size(102, 21);
-            this.buttonS35.TabIndex = 68;
-            this.buttonS35.UseVisualStyleBackColor = true;
-            // 
-            // buttonS49
-            // 
-            this.buttonS49.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS49.Location = new System.Drawing.Point(328, 182);
-            this.buttonS49.Name = "buttonS49";
-            this.buttonS49.Size = new System.Drawing.Size(102, 21);
-            this.buttonS49.TabIndex = 80;
-            this.buttonS49.UseVisualStyleBackColor = true;
-            // 
-            // buttonS37
-            // 
-            this.buttonS37.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS37.Location = new System.Drawing.Point(221, 236);
-            this.buttonS37.Name = "buttonS37";
-            this.buttonS37.Size = new System.Drawing.Size(102, 21);
-            this.buttonS37.TabIndex = 69;
-            this.buttonS37.UseVisualStyleBackColor = true;
-            // 
-            // buttonS47
-            // 
-            this.buttonS47.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS47.Location = new System.Drawing.Point(328, 128);
-            this.buttonS47.Name = "buttonS47";
-            this.buttonS47.Size = new System.Drawing.Size(102, 21);
-            this.buttonS47.TabIndex = 79;
-            this.buttonS47.UseVisualStyleBackColor = true;
-            // 
-            // buttonS36
-            // 
-            this.buttonS36.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS36.Location = new System.Drawing.Point(221, 209);
-            this.buttonS36.Name = "buttonS36";
-            this.buttonS36.Size = new System.Drawing.Size(102, 21);
-            this.buttonS36.TabIndex = 70;
-            this.buttonS36.UseVisualStyleBackColor = true;
-            // 
-            // buttonS48
-            // 
-            this.buttonS48.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS48.Location = new System.Drawing.Point(328, 155);
-            this.buttonS48.Name = "buttonS48";
-            this.buttonS48.Size = new System.Drawing.Size(102, 21);
-            this.buttonS48.TabIndex = 78;
-            this.buttonS48.UseVisualStyleBackColor = true;
-            // 
-            // buttonS38
-            // 
-            this.buttonS38.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS38.Location = new System.Drawing.Point(221, 263);
-            this.buttonS38.Name = "buttonS38";
-            this.buttonS38.Size = new System.Drawing.Size(102, 21);
-            this.buttonS38.TabIndex = 71;
-            this.buttonS38.UseVisualStyleBackColor = true;
-            // 
-            // buttonS46
-            // 
-            this.buttonS46.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS46.Location = new System.Drawing.Point(328, 101);
-            this.buttonS46.Name = "buttonS46";
-            this.buttonS46.Size = new System.Drawing.Size(102, 21);
-            this.buttonS46.TabIndex = 77;
-            this.buttonS46.UseVisualStyleBackColor = true;
-            // 
-            // buttonS40
-            // 
-            this.buttonS40.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS40.Location = new System.Drawing.Point(221, 317);
-            this.buttonS40.Name = "buttonS40";
-            this.buttonS40.Size = new System.Drawing.Size(102, 21);
-            this.buttonS40.TabIndex = 72;
-            this.buttonS40.UseVisualStyleBackColor = true;
-            // 
-            // buttonS44
-            // 
-            this.buttonS44.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS44.Location = new System.Drawing.Point(328, 47);
-            this.buttonS44.Name = "buttonS44";
-            this.buttonS44.Size = new System.Drawing.Size(102, 21);
-            this.buttonS44.TabIndex = 76;
-            this.buttonS44.UseVisualStyleBackColor = true;
-            // 
-            // buttonS39
-            // 
-            this.buttonS39.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS39.Location = new System.Drawing.Point(221, 290);
-            this.buttonS39.Name = "buttonS39";
-            this.buttonS39.Size = new System.Drawing.Size(102, 21);
-            this.buttonS39.TabIndex = 73;
-            this.buttonS39.UseVisualStyleBackColor = true;
-            // 
-            // buttonS45
-            // 
-            this.buttonS45.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS45.Location = new System.Drawing.Point(328, 74);
-            this.buttonS45.Name = "buttonS45";
-            this.buttonS45.Size = new System.Drawing.Size(102, 21);
-            this.buttonS45.TabIndex = 75;
-            this.buttonS45.UseVisualStyleBackColor = true;
-            // 
-            // buttonS41
-            // 
-            this.buttonS41.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonS41.Location = new System.Drawing.Point(221, 344);
-            this.buttonS41.Name = "buttonS41";
-            this.buttonS41.Size = new System.Drawing.Size(102, 21);
-            this.buttonS41.TabIndex = 74;
-            this.buttonS41.UseVisualStyleBackColor = true;
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.radioButton2);
-            this.groupBox14.Controls.Add(this.checkBox1);
-            this.groupBox14.Controls.Add(this.radioButton1);
-            this.groupBox14.Controls.Add(this.comboBox1);
-            this.groupBox14.Controls.Add(this.button1);
-            this.groupBox14.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox14.Location = new System.Drawing.Point(6, 97);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(303, 96);
-            this.groupBox14.TabIndex = 5;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Read Program";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 46);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(113, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Random Selection";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.ForeColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "2",
-            "4",
-            "8",
-            "16",
-            "32",
-            "64",
-            "128"});
-            this.comboBox1.Location = new System.Drawing.Point(125, 42);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(172, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(6, 69);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(291, 21);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Read Program\'s Page";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(121, 17);
-            this.radioButton1.TabIndex = 5;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Global Replacement";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(133, 19);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(117, 17);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Local Replacement";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.groupBox10.Text = "Paging Algorithm Implemented";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "FIFO";
             // 
             // FormMain
             // 
@@ -1374,6 +1367,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "28410629 - Memory Application";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1391,8 +1386,7 @@
             this.groupBox9.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1473,7 +1467,6 @@
         public System.Windows.Forms.Label labelMemoryUsedP;
         public System.Windows.Forms.Label labelMemoryUsedS;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.ComboBox comboBoxSelectedAlgorithm;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.TextBox textBoxFrameSize;
         private System.Windows.Forms.GroupBox groupBox12;
@@ -1511,8 +1504,9 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBoxReadProgram;
+        private System.Windows.Forms.Button buttonReadProgram;
+        private System.Windows.Forms.Label label1;
     }
 }
 
