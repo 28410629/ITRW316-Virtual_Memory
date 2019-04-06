@@ -45,6 +45,7 @@ namespace MemoryManagement
         private int _statsPageFaultUnresolved = 0;
         private int _statsTotalEntriesTLB = 0;
         private int _statsMovedToSwap = 0;
+        private bool _readOperationActive = false;
 
         // CONSTRUCTOR
 
@@ -132,7 +133,6 @@ namespace MemoryManagement
             checkBoxRandomRead.Checked = true;
             componentsGUI(false);
             _isSimulation = true;
-            _sleepTime = 100;
             Thread thread = new Thread(new ThreadStart(addProgramThread));
             thread.Start();
         }
@@ -161,7 +161,6 @@ namespace MemoryManagement
                 {
                     Console.WriteLine("Add is requested");
                     buttonProgramAdd.PerformClick();
-
                 }
             });
         }
@@ -175,7 +174,6 @@ namespace MemoryManagement
             buttonReadProgram.Enabled = enable;
             buttonProgramAdd.Enabled = enable;
             buttonStart.Enabled = enable;
-
         }
 
         private void pageSize(double num)
@@ -304,11 +302,26 @@ namespace MemoryManagement
 
         private int readScanPhysical()
         {
-            string text = "";
+          
             for (int i = 0; i < _programInformation.Count; i++)
             {
 
                 if (_readProgramPage == ((char)_programInformation[i][_storedName] + "-" + _programInformation[i][_storedPage]))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        private int scanPhysicalParentPages(string name)
+        {
+            string text = name.Substring(0,1);
+            for (int i = 0; i < _programInformation.Count; i++)
+            {
+
+                if (text == ((char)_programInformation[i][_storedName] + "-" + _programInformation[i][_storedPage]))
                 {
                     return i;
                 }
@@ -388,7 +401,7 @@ namespace MemoryManagement
 
         private void readProgramThread()
         {
-
+            _readOperationActive = true;
             int location;
             // check tlb
 
@@ -414,17 +427,17 @@ namespace MemoryManagement
             }
 
             // update tlb
-            // end
+
             this.Invoke((MethodInvoker)delegate
             {
                 componentsGUI(true);
             });
+            _readOperationActive = false;
             Console.WriteLine("Simulation : " +_isSimulation);
             if (_isSimulation)
             {
                 simulation();
             }
-
         }
 
         private int determineProgramSize()
@@ -554,10 +567,12 @@ namespace MemoryManagement
                 int start = scanSpace(1, _memoryStorage); // check if there is space in swape
                 while (start == -1) // remove programs till enough space is available
                 {
-                    removeProgramFromMemory((int)_infoSwap[0][_storedStart], (int)_infoSwap[0][_storedStop], _memoryStorage); // drop program from swap if no space
-                    displayMessage("Program " + (char)_infoSwap[0][_storedName] + "-" + _infoSwap[0][_storedPage] + " is dropped.");
-                    _infoSwap.RemoveAt(0); // remove program from swap information
-                    start = scanSpace(1, _memoryStorage); // re-evaluate
+                    
+                        removeProgramFromMemory((int)_infoSwap[0][_storedStart], (int)_infoSwap[0][_storedStop], _memoryStorage); // drop program from swap if no space
+                        displayMessage("Program " + (char)_infoSwap[0][_storedName] + "-" + _infoSwap[0][_storedPage] + " is dropped.");
+                        _infoSwap.RemoveAt(0); // remove program from swap information
+                        start = scanSpace(1, _memoryStorage); // re-evaluate
+                    
                 }
 
                 // determine colour of existing block in use 
@@ -587,6 +602,11 @@ namespace MemoryManagement
                 // unsuccesful
                 return false;
             }
+        }
+
+        private void ScrollBarSpeed_Scroll(object sender, ScrollEventArgs e)
+        {
+            _sleepTime = (70 - scrollBarSpeed.Value) * 10;
         }
     }
 }

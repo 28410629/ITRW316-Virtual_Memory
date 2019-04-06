@@ -30,9 +30,9 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonLocal = new System.Windows.Forms.RadioButton();
             this.checkBoxRandomRead = new System.Windows.Forms.CheckBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonGlobal = new System.Windows.Forms.RadioButton();
             this.comboBoxReadProgram = new System.Windows.Forms.ComboBox();
             this.buttonReadProgram = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -142,11 +142,26 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.scrollBarSpeed = new System.Windows.Forms.HScrollBar();
+            this.buttonT10 = new System.Windows.Forms.Button();
+            this.buttonT12 = new System.Windows.Forms.Button();
+            this.buttonT8 = new System.Windows.Forms.Button();
+            this.buttonT4 = new System.Windows.Forms.Button();
+            this.buttonT6 = new System.Windows.Forms.Button();
+            this.buttonT9 = new System.Windows.Forms.Button();
+            this.buttonT11 = new System.Windows.Forms.Button();
+            this.buttonT7 = new System.Windows.Forms.Button();
+            this.buttonT3 = new System.Windows.Forms.Button();
+            this.buttonT5 = new System.Windows.Forms.Button();
+            this.buttonT2 = new System.Windows.Forms.Button();
+            this.buttonT1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -155,10 +170,12 @@
             this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox15);
             this.groupBox1.Controls.Add(this.groupBox14);
             this.groupBox1.Controls.Add(this.groupBox7);
             this.groupBox1.Controls.Add(this.groupBox5);
@@ -172,9 +189,9 @@
             // 
             // groupBox14
             // 
-            this.groupBox14.Controls.Add(this.radioButton2);
+            this.groupBox14.Controls.Add(this.radioButtonLocal);
             this.groupBox14.Controls.Add(this.checkBoxRandomRead);
-            this.groupBox14.Controls.Add(this.radioButton1);
+            this.groupBox14.Controls.Add(this.radioButtonGlobal);
             this.groupBox14.Controls.Add(this.comboBoxReadProgram);
             this.groupBox14.Controls.Add(this.buttonReadProgram);
             this.groupBox14.ForeColor = System.Drawing.SystemColors.Control;
@@ -185,16 +202,16 @@
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Read Program";
             // 
-            // radioButton2
+            // radioButtonLocal
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(133, 19);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(117, 17);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Local Replacement";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButtonLocal.AutoSize = true;
+            this.radioButtonLocal.Location = new System.Drawing.Point(133, 19);
+            this.radioButtonLocal.Name = "radioButtonLocal";
+            this.radioButtonLocal.Size = new System.Drawing.Size(117, 17);
+            this.radioButtonLocal.TabIndex = 6;
+            this.radioButtonLocal.TabStop = true;
+            this.radioButtonLocal.Text = "Local Replacement";
+            this.radioButtonLocal.UseVisualStyleBackColor = true;
             // 
             // checkBoxRandomRead
             // 
@@ -207,16 +224,17 @@
             this.checkBoxRandomRead.UseVisualStyleBackColor = true;
             this.checkBoxRandomRead.CheckedChanged += new System.EventHandler(this.CheckBoxRandomRead_CheckedChanged);
             // 
-            // radioButton1
+            // radioButtonGlobal
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(121, 17);
-            this.radioButton1.TabIndex = 5;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Global Replacement";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButtonGlobal.AutoSize = true;
+            this.radioButtonGlobal.Checked = true;
+            this.radioButtonGlobal.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonGlobal.Name = "radioButtonGlobal";
+            this.radioButtonGlobal.Size = new System.Drawing.Size(121, 17);
+            this.radioButtonGlobal.TabIndex = 5;
+            this.radioButtonGlobal.TabStop = true;
+            this.radioButtonGlobal.Text = "Global Replacement";
+            this.radioButtonGlobal.UseVisualStyleBackColor = true;
             // 
             // comboBoxReadProgram
             // 
@@ -244,9 +262,9 @@
             // 
             this.groupBox7.Controls.Add(this.textBoxInfo);
             this.groupBox7.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox7.Location = new System.Drawing.Point(6, 199);
+            this.groupBox7.Location = new System.Drawing.Point(6, 253);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(303, 211);
+            this.groupBox7.Size = new System.Drawing.Size(303, 155);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Operations";
@@ -259,7 +277,7 @@
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInfo.Size = new System.Drawing.Size(291, 186);
+            this.textBoxInfo.Size = new System.Drawing.Size(291, 130);
             this.textBoxInfo.TabIndex = 0;
             // 
             // groupBox5
@@ -331,10 +349,22 @@
             // 
             // groupBox13
             // 
+            this.groupBox13.Controls.Add(this.buttonT10);
+            this.groupBox13.Controls.Add(this.buttonT2);
+            this.groupBox13.Controls.Add(this.buttonT12);
+            this.groupBox13.Controls.Add(this.buttonT1);
+            this.groupBox13.Controls.Add(this.buttonT8);
+            this.groupBox13.Controls.Add(this.buttonT5);
+            this.groupBox13.Controls.Add(this.buttonT4);
+            this.groupBox13.Controls.Add(this.buttonT3);
+            this.groupBox13.Controls.Add(this.buttonT6);
+            this.groupBox13.Controls.Add(this.buttonT7);
+            this.groupBox13.Controls.Add(this.buttonT9);
+            this.groupBox13.Controls.Add(this.buttonT11);
             this.groupBox13.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox13.Location = new System.Drawing.Point(233, 93);
+            this.groupBox13.Location = new System.Drawing.Point(233, 173);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(221, 358);
+            this.groupBox13.Size = new System.Drawing.Size(221, 184);
             this.groupBox13.TabIndex = 33;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "TLB";
@@ -1343,6 +1373,135 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "FIFO";
             // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.scrollBarSpeed);
+            this.groupBox15.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox15.Location = new System.Drawing.Point(6, 199);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(303, 48);
+            this.groupBox15.TabIndex = 5;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Operation Speed";
+            // 
+            // scrollBarSpeed
+            // 
+            this.scrollBarSpeed.Location = new System.Drawing.Point(6, 18);
+            this.scrollBarSpeed.Maximum = 79;
+            this.scrollBarSpeed.Name = "scrollBarSpeed";
+            this.scrollBarSpeed.Size = new System.Drawing.Size(291, 20);
+            this.scrollBarSpeed.SmallChange = 10;
+            this.scrollBarSpeed.TabIndex = 0;
+            this.scrollBarSpeed.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarSpeed_Scroll);
+            // 
+            // buttonT10
+            // 
+            this.buttonT10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT10.Location = new System.Drawing.Point(113, 127);
+            this.buttonT10.Name = "buttonT10";
+            this.buttonT10.Size = new System.Drawing.Size(102, 21);
+            this.buttonT10.TabIndex = 44;
+            this.buttonT10.UseVisualStyleBackColor = true;
+            // 
+            // buttonT12
+            // 
+            this.buttonT12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT12.Location = new System.Drawing.Point(113, 154);
+            this.buttonT12.Name = "buttonT12";
+            this.buttonT12.Size = new System.Drawing.Size(102, 21);
+            this.buttonT12.TabIndex = 43;
+            this.buttonT12.UseVisualStyleBackColor = true;
+            // 
+            // buttonT8
+            // 
+            this.buttonT8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT8.Location = new System.Drawing.Point(113, 100);
+            this.buttonT8.Name = "buttonT8";
+            this.buttonT8.Size = new System.Drawing.Size(102, 21);
+            this.buttonT8.TabIndex = 42;
+            this.buttonT8.UseVisualStyleBackColor = true;
+            // 
+            // buttonT4
+            // 
+            this.buttonT4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT4.Location = new System.Drawing.Point(113, 46);
+            this.buttonT4.Name = "buttonT4";
+            this.buttonT4.Size = new System.Drawing.Size(102, 21);
+            this.buttonT4.TabIndex = 41;
+            this.buttonT4.UseVisualStyleBackColor = true;
+            // 
+            // buttonT6
+            // 
+            this.buttonT6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT6.Location = new System.Drawing.Point(113, 73);
+            this.buttonT6.Name = "buttonT6";
+            this.buttonT6.Size = new System.Drawing.Size(102, 21);
+            this.buttonT6.TabIndex = 40;
+            this.buttonT6.UseVisualStyleBackColor = true;
+            // 
+            // buttonT9
+            // 
+            this.buttonT9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT9.Location = new System.Drawing.Point(6, 127);
+            this.buttonT9.Name = "buttonT9";
+            this.buttonT9.Size = new System.Drawing.Size(102, 21);
+            this.buttonT9.TabIndex = 39;
+            this.buttonT9.UseVisualStyleBackColor = true;
+            // 
+            // buttonT11
+            // 
+            this.buttonT11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT11.Location = new System.Drawing.Point(6, 154);
+            this.buttonT11.Name = "buttonT11";
+            this.buttonT11.Size = new System.Drawing.Size(102, 21);
+            this.buttonT11.TabIndex = 38;
+            this.buttonT11.UseVisualStyleBackColor = true;
+            // 
+            // buttonT7
+            // 
+            this.buttonT7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT7.Location = new System.Drawing.Point(6, 100);
+            this.buttonT7.Name = "buttonT7";
+            this.buttonT7.Size = new System.Drawing.Size(102, 21);
+            this.buttonT7.TabIndex = 37;
+            this.buttonT7.UseVisualStyleBackColor = true;
+            // 
+            // buttonT3
+            // 
+            this.buttonT3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT3.Location = new System.Drawing.Point(6, 46);
+            this.buttonT3.Name = "buttonT3";
+            this.buttonT3.Size = new System.Drawing.Size(102, 21);
+            this.buttonT3.TabIndex = 36;
+            this.buttonT3.UseVisualStyleBackColor = true;
+            // 
+            // buttonT5
+            // 
+            this.buttonT5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT5.Location = new System.Drawing.Point(6, 73);
+            this.buttonT5.Name = "buttonT5";
+            this.buttonT5.Size = new System.Drawing.Size(102, 21);
+            this.buttonT5.TabIndex = 35;
+            this.buttonT5.UseVisualStyleBackColor = true;
+            // 
+            // buttonT2
+            // 
+            this.buttonT2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT2.Location = new System.Drawing.Point(113, 19);
+            this.buttonT2.Name = "buttonT2";
+            this.buttonT2.Size = new System.Drawing.Size(102, 21);
+            this.buttonT2.TabIndex = 34;
+            this.buttonT2.UseVisualStyleBackColor = true;
+            // 
+            // buttonT1
+            // 
+            this.buttonT1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonT1.Location = new System.Drawing.Point(6, 19);
+            this.buttonT1.Name = "buttonT1";
+            this.buttonT1.Size = new System.Drawing.Size(102, 21);
+            this.buttonT1.TabIndex = 33;
+            this.buttonT1.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1367,6 +1526,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox13.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
@@ -1380,6 +1540,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            this.groupBox15.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1494,12 +1655,26 @@
         private System.Windows.Forms.Button buttonS45;
         private System.Windows.Forms.Button buttonS41;
         private System.Windows.Forms.GroupBox groupBox14;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButtonLocal;
         private System.Windows.Forms.CheckBox checkBoxRandomRead;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButtonGlobal;
         private System.Windows.Forms.ComboBox comboBoxReadProgram;
         private System.Windows.Forms.Button buttonReadProgram;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.HScrollBar scrollBarSpeed;
+        private System.Windows.Forms.Button buttonT10;
+        private System.Windows.Forms.Button buttonT2;
+        private System.Windows.Forms.Button buttonT12;
+        private System.Windows.Forms.Button buttonT1;
+        private System.Windows.Forms.Button buttonT8;
+        private System.Windows.Forms.Button buttonT5;
+        private System.Windows.Forms.Button buttonT4;
+        private System.Windows.Forms.Button buttonT3;
+        private System.Windows.Forms.Button buttonT6;
+        private System.Windows.Forms.Button buttonT7;
+        private System.Windows.Forms.Button buttonT9;
+        private System.Windows.Forms.Button buttonT11;
     }
 }
 
