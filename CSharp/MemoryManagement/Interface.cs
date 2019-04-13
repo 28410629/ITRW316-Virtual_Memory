@@ -25,7 +25,7 @@ namespace MemoryManagement
         private List<double[]> _programInformation = new List<double[]>();
         private List<double[]> _pageTable = new List<double[]>();
         private List<double[]> _infoSwap = new List<double[]>();
-        private int _sleepTime = 250;
+        private int _sleepTime = 0;
         private bool _isSimulation;
         private bool _AddProgram = true; //reset required
         private int _countUsedP = 0;
@@ -38,14 +38,8 @@ namespace MemoryManagement
         private const int _storedStop = 4;
         private const int _storedPageFrag = 5;
         private string _readProgramPage;
-        private int _statsAdds = 0;
-        private int _statsRead = 0;
-        private int _statsPageFault = 0;
-        private int _statsPageFaultResolved = 0;
-        private int _statsPageFaultUnresolved = 0;
-        private int _statsTotalEntriesTLB = 0;
-        private int _statsMovedToSwap = 0;
         private bool _readOperationActive = false;
+        private LogSystem log = new LogSystem();
 
         // CONSTRUCTOR
 
@@ -152,7 +146,7 @@ namespace MemoryManagement
 
             this.Invoke((MethodInvoker)delegate
             {
-                if (_random.Next(101) > 40)
+                if (_random.Next(101) > 20)
                 {
                     Console.WriteLine("Read is requested");
                     buttonReadProgram.PerformClick();
@@ -302,7 +296,7 @@ namespace MemoryManagement
 
         private int readScanPhysical()
         {
-          
+
             for (int i = 0; i < _programInformation.Count; i++)
             {
 
@@ -317,7 +311,7 @@ namespace MemoryManagement
 
         private int scanPhysicalParentPages(string name)
         {
-            string text = name.Substring(0,1);
+            string text = name.Substring(0, 1);
             for (int i = 0; i < _programInformation.Count; i++)
             {
 
@@ -327,6 +321,19 @@ namespace MemoryManagement
                 }
             }
 
+            return -1;
+        }
+
+        private int scanPhysicalLocalSwap(int charValue)
+        {
+            for (int i = 0; i < _programInformation.Count; i++)
+            {
+
+                if ((char)_programInformation[i][_storedName] == (char)charValue)
+                {
+                    return i;
+                }
+            }
             return -1;
         }
 
@@ -360,13 +367,30 @@ namespace MemoryManagement
                 string pName = (char)arr[_storedName] + "-" + arr[_storedPage];
                 double pSize = arr[_storedSize];
 
+
+                int canSwap = -1;
+
+                if (radioButtonLocal.Checked) // check if program can swap himself out
+                {
+
+                    canSwap = scanPhysicalLocalSwap((int)arr[_storedName]);
+                }
+
                 int start = scanSpace(1, _memoryPhysical); // scan for space
                 bool couldHelp = true; // should find better method
 
-                while (start == -1 && couldHelp) // if no space, move to swap according to paging algorithm
+                if (radioButtonLocal.Checked && canSwap != -1)
                 {
-                    couldHelp = FIFO();
+                    FIFO(canSwap);
                     start = scanSpace(1, _memoryPhysical);
+                }
+                else
+                {
+                    while (start == -1 && couldHelp) // if no space, move to swap according to paging algorithm
+                    {
+                        couldHelp = FIFO(0);
+                        start = scanSpace(1, _memoryPhysical);
+                    }
                 }
 
                 if (start != -1) // add program to ram
@@ -386,6 +410,8 @@ namespace MemoryManagement
 
                     // add details to list
                     _programInformation.Add(new double[] { arr[_storedName], arr[_storedPage], pSize, start, end }); // position
+                    displayMessage("Program " + pName + " returned to RAM.");
+                    log.logMoveToPhysical();
 
                 }
                 else
@@ -410,19 +436,25 @@ namespace MemoryManagement
             if (location == -1)
             {
                 bool found = readScanSwap();
+                log.logPageFault();
                 if (found)
                 {
                     location = readScanPhysical();
                     displayMessage("Page " + _readProgramPage + " read in memory.");
+                    log.logRead();
+                    log.logPageFaultResolved();
                 }
                 else
                 {
                     displayMessage("Page " + _readProgramPage + " unavailable, it was dropped in swap.");
+                    log.logPageFaultUnresolved();
+                    log.logReadFailed();
                 }
             }
             else
             {
                 displayMessage("Page " + _readProgramPage + " read in memory.");
+                log.logRead();
                 // add fragmentation/size
             }
 
@@ -433,7 +465,7 @@ namespace MemoryManagement
                 componentsGUI(true);
             });
             _readOperationActive = false;
-            Console.WriteLine("Simulation : " +_isSimulation);
+            Console.WriteLine("Simulation : " + _isSimulation);
             if (_isSimulation)
             {
                 simulation();
@@ -492,10 +524,10 @@ namespace MemoryManagement
             if (_AddProgram)
             {
                 // new program details
-                int programSize = determineProgramSize(); 
-                string programName = ""; 
-                Color memoryColor = Color.FromArgb(_random.Next(14, 129), _random.Next(14, 129), _random.Next(14, 129)); 
-                int requiredMemoryBlock = (int)Math.Ceiling(programSize / _frameSize); 
+                int programSize = determineProgramSize();
+                string programName = "";
+                Color memoryColor = Color.FromArgb(_random.Next(14, 129), _random.Next(14, 129), _random.Next(14, 129));
+                int requiredMemoryBlock = (int)Math.Ceiling(programSize / _frameSize);
                 double memoryFragmentation = (programSize / _frameSize) - (int)Math.Floor(programSize / _frameSize);
 
                 for (int j = 0; j < requiredMemoryBlock; j++)
@@ -505,12 +537,12 @@ namespace MemoryManagement
                     int start = scanSpace(1, _memoryPhysical); // scan for space
                     bool couldHelp = true; // should find better method
 
-                    while (start == -1 && couldHelp) 
+                    while (start == -1 && couldHelp)
                     {
-                        couldHelp = FIFO(); // if no space, move to swap according to paging algorithm
+                        couldHelp = FIFO(0); // if no space, move to swap according to paging algorithm
                         start = scanSpace(1, _memoryPhysical); // determine if space is available
                     }
-                    if (start != -1) 
+                    if (start != -1)
                     {
                         addProgramToMemory(start, programName + " : " + programSize, memoryColor, _memoryPhysical); // add program to ram
                         _programInformation.Add(new double[] { _programName, j, programSize, start, start + 1 }); // add details to list
@@ -518,12 +550,15 @@ namespace MemoryManagement
                         {
                             comboBoxReadProgram.Items.Add(programName);
                         });
+                        log.logAddPage();
                     }
                     else
                     {
                         displayMessage("Program " + programName + " could not be added.");
+                        log.logAddFailed();
                     }
                 }
+                log.logAdd();
                 displayMessage("Program " + (char)_programName + " is added to ram.");
 
                 _programName++; // increment char number for next program name
@@ -531,7 +566,7 @@ namespace MemoryManagement
                 {
                     _programName = 97;
                 }
-                if (_programName == 122)
+                if (_programName == 123)
                 {
                     _AddProgram = false;
                 }
@@ -560,39 +595,39 @@ namespace MemoryManagement
 
         // ALGORITHMS
 
-        private bool FIFO()
+        private bool FIFO(int changablePosition)
         {
             if (_programInformation.Count > 0)
             {
                 int start = scanSpace(1, _memoryStorage); // check if there is space in swape
                 while (start == -1) // remove programs till enough space is available
                 {
-                    
-                        removeProgramFromMemory((int)_infoSwap[0][_storedStart], (int)_infoSwap[0][_storedStop], _memoryStorage); // drop program from swap if no space
-                        displayMessage("Program " + (char)_infoSwap[0][_storedName] + "-" + _infoSwap[0][_storedPage] + " is dropped.");
-                        _infoSwap.RemoveAt(0); // remove program from swap information
-                        start = scanSpace(1, _memoryStorage); // re-evaluate
-                    
+
+                    removeProgramFromMemory((int)_infoSwap[0][_storedStart], (int)_infoSwap[0][_storedStop], _memoryStorage); // drop program from swap if no space
+                    displayMessage("Program " + (char)_infoSwap[0][_storedName] + "-" + _infoSwap[0][_storedPage] + " is dropped.");
+                    _infoSwap.RemoveAt(0); // remove program from swap information
+                    start = scanSpace(1, _memoryStorage); // re-evaluate
+                    log.logDroppedPage();
                 }
 
                 // determine colour of existing block in use 
-                Color memoryColour = _memoryPhysical[(int)_programInformation[0][_storedStart]].BackColor; // determine color of program moved to swap
-                
+                Color memoryColour = _memoryPhysical[(int)_programInformation[changablePosition][_storedStart]].BackColor; // determine color of program moved to swap
+
                 // remove program from physical
-                removeProgramFromMemory((int)_programInformation[0][_storedStart], (int)_programInformation[0][_storedStop], _memoryPhysical); // remove from ram
+                removeProgramFromMemory((int)_programInformation[changablePosition][_storedStart], (int)_programInformation[changablePosition][_storedStop], _memoryPhysical); // remove from ram
 
                 // add program to swap
-                _statsMovedToSwap++;
-                addProgramToMemory(start, (char)_programInformation[0][_storedName] + "-" + _programInformation[0][_storedPage] + " : " + _programInformation[0][_storedSize], memoryColour, _memoryStorage);
+                log.logMoveToSwap();
+                addProgramToMemory(start, (char)_programInformation[changablePosition][_storedName] + "-" + _programInformation[changablePosition][_storedPage] + " : " + _programInformation[changablePosition][_storedSize], memoryColour, _memoryStorage);
 
                 // display when it is done
-                displayMessage("Program " + (char)_programInformation[0][_storedName] + "-" + _programInformation[0][_storedPage] + " is moved to swap.");
+                displayMessage("Program " + (char)_programInformation[changablePosition][_storedName] + "-" + _programInformation[changablePosition][_storedPage] + " is moved to swap.");
 
                 // transfer program data from physical to swap
-                _programInformation[0][_storedStart] = start;
-                _programInformation[0][_storedStop] = start + 1;
-                _infoSwap.Add(_programInformation[0]);
-                _programInformation.RemoveAt(0);
+                _programInformation[changablePosition][_storedStart] = start;
+                _programInformation[changablePosition][_storedStop] = start + 1;
+                _infoSwap.Add(_programInformation[changablePosition]);
+                _programInformation.RemoveAt(changablePosition);
 
                 // succesful
                 return true;
@@ -604,9 +639,16 @@ namespace MemoryManagement
             }
         }
 
-        private void ScrollBarSpeed_Scroll(object sender, ScrollEventArgs e)
+
+
+        private void ButtonLog_Click(object sender, EventArgs e)
         {
-            _sleepTime = (70 - scrollBarSpeed.Value) * 10;
+            MessageBox.Show(log.getLog(), "", MessageBoxButtons.OK, MessageBoxIcon.None);
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
