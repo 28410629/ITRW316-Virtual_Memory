@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.buttonLog = new System.Windows.Forms.Button();
@@ -157,9 +158,9 @@
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxAlgorithm = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
@@ -607,15 +608,12 @@
             // 
             // labelMemoryUsedP
             // 
-            this.labelMemoryUsedP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMemoryUsedP.AutoSize = true;
-            this.labelMemoryUsedP.Location = new System.Drawing.Point(61, 21);
+            this.labelMemoryUsedP.Location = new System.Drawing.Point(80, 21);
             this.labelMemoryUsedP.Name = "labelMemoryUsedP";
-            this.labelMemoryUsedP.Size = new System.Drawing.Size(98, 13);
+            this.labelMemoryUsedP.Size = new System.Drawing.Size(53, 13);
             this.labelMemoryUsedP.TabIndex = 0;
-            this.labelMemoryUsedP.Text = "0 bytes / 504 bytes";
+            this.labelMemoryUsedP.Text = "504 bytes";
             this.labelMemoryUsedP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonP28
@@ -1226,11 +1224,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMemoryUsedS.AutoSize = true;
-            this.labelMemoryUsedS.Location = new System.Drawing.Point(168, 20);
+            this.labelMemoryUsedS.Location = new System.Drawing.Point(185, 20);
             this.labelMemoryUsedS.Name = "labelMemoryUsedS";
-            this.labelMemoryUsedS.Size = new System.Drawing.Size(104, 13);
+            this.labelMemoryUsedS.Size = new System.Drawing.Size(59, 13);
             this.labelMemoryUsedS.TabIndex = 1;
-            this.labelMemoryUsedS.Text = "0 bytes / 1120 bytes";
+            this.labelMemoryUsedS.Text = "1120 bytes";
             this.labelMemoryUsedS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonS28
@@ -1521,7 +1519,7 @@
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.label1);
+            this.groupBox10.Controls.Add(this.comboBoxAlgorithm);
             this.groupBox10.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox10.Location = new System.Drawing.Point(12, 434);
             this.groupBox10.Name = "groupBox10";
@@ -1529,15 +1527,6 @@
             this.groupBox10.TabIndex = 4;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Paging Algorithm";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "FIFO";
             // 
             // label2
             // 
@@ -1557,6 +1546,18 @@
             this.label3.TabIndex = 46;
             this.label3.Text = "Physical Page";
             // 
+            // comboBoxAlgorithm
+            // 
+            this.comboBoxAlgorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAlgorithm.FormattingEnabled = true;
+            this.comboBoxAlgorithm.Items.AddRange(new object[] {
+            "First In, First Out Paging Algorithm",
+            "Own Random Selection Algorithm"});
+            this.comboBoxAlgorithm.Location = new System.Drawing.Point(6, 19);
+            this.comboBoxAlgorithm.Name = "comboBoxAlgorithm";
+            this.comboBoxAlgorithm.Size = new System.Drawing.Size(303, 21);
+            this.comboBoxAlgorithm.TabIndex = 1;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1567,6 +1568,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1269, 602);
             this.MinimumSize = new System.Drawing.Size(1269, 602);
@@ -1597,7 +1599,6 @@
             this.groupBox9.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1717,7 +1718,6 @@
         private System.Windows.Forms.RadioButton radioButtonGlobal;
         private System.Windows.Forms.ComboBox comboBoxReadProgram;
         private System.Windows.Forms.Button buttonReadProgram;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.Button buttonT10;
         private System.Windows.Forms.Button buttonT2;
@@ -1736,6 +1736,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxAlgorithm;
     }
 }
 

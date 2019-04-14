@@ -66,23 +66,30 @@ namespace MemoryManagement
 
         private void ButtonReadProgram_Click(object sender, EventArgs e)
         {
-            if (checkBoxRandomRead.Checked)
+            if (comboBoxReadProgram.Items.Count > 0)
             {
-                comboBoxReadProgram.SelectedIndex = _random.Next(comboBoxReadProgram.Items.Count);
-            }
-            componentsGUI(false);
-            try
-            {
-                _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
-            }
-            catch (Exception)
-            {
-                comboBoxReadProgram.SelectedIndex = 0;
-                _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
-            }
+                if (checkBoxRandomRead.Checked)
+                {
+                    comboBoxReadProgram.SelectedIndex = _random.Next(comboBoxReadProgram.Items.Count);
+                }
+                componentsGUI(false);
+                try
+                {
+                    _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
+                }
+                catch (Exception)
+                {
+                    comboBoxReadProgram.SelectedIndex = 0;
+                    _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
+                }
 
-            Thread thread = new Thread(new ThreadStart(readProgramThread));
-            thread.Start();
+                Thread thread = new Thread(new ThreadStart(readProgramThread));
+                thread.Start();
+            }
+            else
+            {
+                displayMessage("Please add a program to read.");
+            }
         }
 
         private void textBoxFrameSize_TextChanged(object sender, EventArgs e)
@@ -159,6 +166,14 @@ namespace MemoryManagement
         {
             this.Invoke((MethodInvoker)delegate
             {
+                if (_random.Next(101) > 50)
+                {
+                    radioButtonLocal.Checked = true;
+                }
+                else
+                {
+                    radioButtonGlobal.Checked = true;
+                }
                 if (_random.Next(101) > 20)
                 {
                     Console.WriteLine("Read is requested");
@@ -191,8 +206,8 @@ namespace MemoryManagement
             _pageSizeTotal = 56 * num;
             _frameSize = num;
             _pageSize = num;
-            labelMemoryUsedP.Text = _countUsedP + " / " + _frameSizeTotal + " bytes";
-            labelMemoryUsedS.Text = _countUsedS + " / " + _pageSizeTotal + " bytes";
+            labelMemoryUsedP.Text = _frameSizeTotal + " bytes";
+            labelMemoryUsedS.Text = _pageSizeTotal + " bytes";
         }
 
         private void setup()
@@ -230,6 +245,9 @@ namespace MemoryManagement
                 _memoryTLB[i].Text = "null";
             }
             comboBox1.SelectedIndex = 0;
+            checkBoxProgramRandomSize.Checked = true;
+            checkBoxRandomRead.Checked = true;
+            comboBoxAlgorithm.SelectedIndex = 0;
         }
 
         private void resetBlock(Button button)
@@ -368,7 +386,17 @@ namespace MemoryManagement
                 {
                     while (start == -1 && couldHelp) // if no space, move to swap according to paging algorithm
                     {
-                        couldHelp = FIFO(0);
+                        int num = 0;
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            if (comboBoxAlgorithm.SelectedIndex != 0)
+                            {
+                                num = _random.Next(_programInformation.Count);
+                            }
+
+                        });
+                        
+                        couldHelp = FIFO(num);
                         start = scanSpace(1, _memoryPhysical);
                     }
                 }
@@ -603,12 +631,6 @@ namespace MemoryManagement
             {
                 if (_programInformation[i][_storedName] == (double)name)
                 {
-                    /*string message = "";
-                    for (int j = 0; j < _programInformation[i].Length; j++)
-                    {
-                        message += "\n " + j + " - " + _programInformation[i][j];
-                    }
-                    MessageBox.Show(message);*/
                     return Color.FromArgb((int)_programInformation[i][_storedColourRed], (int)_programInformation[i][_storedColourGreen], (int)_programInformation[i][_storedColourBlue]);
                 }
             }
@@ -648,7 +670,17 @@ namespace MemoryManagement
 
                     while (start == -1 && couldHelp)
                     {
-                        couldHelp = FIFO(0); // if no space, move to swap according to paging algorithm
+                        int num = 0;
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            if (comboBoxAlgorithm.SelectedIndex != 0)
+                            {
+                                num = _random.Next(_programInformation.Count);
+                            }
+            
+                        });
+
+                        couldHelp = FIFO(num);
                         start = scanSpace(1, _memoryPhysical); // determine if space is available
                     }
                     if (start != -1)
@@ -731,9 +763,19 @@ namespace MemoryManagement
                 int start = scanSpace(1, _memoryStorage); // check if there is space in swape
                 while (start == -1) // remove programs till enough space is available
                 {
-                    removeProgramFromMemory((int)_infoSwap[0][_storedStart], (int)_infoSwap[0][_storedStop], _memoryStorage); // drop program from swap if no space
-                    displayMessage("Program " + (char)_infoSwap[0][_storedName] + "-" + _infoSwap[0][_storedPage] + " is dropped.");
-                    _infoSwap.RemoveAt(0); // remove program from swap information
+                    int remove = 0;
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        if (comboBoxAlgorithm.SelectedIndex != 0)
+                        {
+                            remove = _random.Next(_programInformation.Count);
+                        }
+                    });
+                    
+                   
+                    removeProgramFromMemory((int)_infoSwap[remove][_storedStart], (int)_infoSwap[remove][_storedStop], _memoryStorage); // drop program from swap if no space
+                    displayMessage("Program " + (char)_infoSwap[remove][_storedName] + "-" + _infoSwap[remove][_storedPage] + " is dropped.");
+                    _infoSwap.RemoveAt(remove); // remove program from swap information
                     start = scanSpace(1, _memoryStorage); // re-evaluate
                     log.logDroppedPage();
                 }
