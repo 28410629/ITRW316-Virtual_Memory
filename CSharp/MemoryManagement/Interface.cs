@@ -21,9 +21,10 @@ namespace MemoryManagement
         private Random _random = new Random();
         private Button[] _memoryPhysical;
         private Button[] _memoryStorage;
+        private Button[] _memoryTLB;
         private int _programName = 65;
         private List<double[]> _programInformation = new List<double[]>();
-        private List<double[]> _pageTable = new List<double[]>();
+        private List<double[]> _tableTLB = new List<double[]>();
         private List<double[]> _infoSwap = new List<double[]>();
         private int _sleepTime = 0;
         private bool _isSimulation;
@@ -36,8 +37,10 @@ namespace MemoryManagement
         private const int _storedSize = 2;
         private const int _storedStart = 3;
         private const int _storedStop = 4;
-        private const int _storedPageFrag = 5;
+        private const int _storedLocationTLB = 5;
+        private const int _storedCounterTLB = 6;
         private string _readProgramPage;
+        private double[] _readProgramArray;
         private bool _readOperationActive = false;
         private LogSystem log = new LogSystem();
 
@@ -66,14 +69,22 @@ namespace MemoryManagement
                 comboBoxReadProgram.SelectedIndex = _random.Next(comboBoxReadProgram.Items.Count);
             }
             componentsGUI(false);
-            _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
+            try
+            {
+                _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
+            }
+            catch (Exception)
+            {
+                comboBoxReadProgram.SelectedIndex = 0;
+                _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
+            }
+            
             Thread thread = new Thread(new ThreadStart(readProgramThread));
             thread.Start();
         }
 
         private void textBoxFrameSize_TextChanged(object sender, EventArgs e)
         {
-
             if (!double.TryParse(textBoxFrameSize.Text, out _num))
             {
                 MessageBox.Show("Please enter valid value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -95,6 +106,7 @@ namespace MemoryManagement
                 pageSize(_num);
             }
         }
+
         private void CheckBoxRandomRead_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxRandomRead.Checked)
@@ -105,8 +117,8 @@ namespace MemoryManagement
             {
                 comboBoxReadProgram.Enabled = true;
             }
-
         }
+
         private void checkBoxProgramRandomSize_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxProgramRandomSize.Checked)
@@ -143,7 +155,6 @@ namespace MemoryManagement
 
         private void simulation()
         {
-
             this.Invoke((MethodInvoker)delegate
             {
                 if (_random.Next(101) > 20)
@@ -198,6 +209,10 @@ namespace MemoryManagement
                                              buttonS36, buttonS37, buttonS38, buttonS39, buttonS40, buttonS41, buttonS42,
                                              buttonS43, buttonS44, buttonS45, buttonS46, buttonS47, buttonS48, buttonS49,
                                              buttonS50, buttonS51, buttonS52, buttonS53, buttonS54, buttonS55, buttonS56};
+
+            _memoryTLB = new Button[] { buttonT1, buttonT2, buttonT3, buttonT4, buttonT5, buttonT6,
+                                        buttonT7, buttonT8, buttonT9, buttonT10, buttonT11, buttonT12};
+
             for (int i = 0; i < _memoryPhysical.Length; i++)
             {
                 resetBlock(_memoryPhysical[i]);
@@ -207,6 +222,12 @@ namespace MemoryManagement
                 resetBlock(_memoryStorage[i]);
             }
             textBoxFrameSize.Text = "" + 18;
+
+            for (int i = 0; i < _memoryTLB.Length; i++)
+            {
+                _memoryTLB[i].Text = "null";
+            }
+            comboBox1.SelectedIndex = 0;
         }
 
         private void resetBlock(Button button)
@@ -281,48 +302,24 @@ namespace MemoryManagement
             return startPosition;
         }
 
-        private int readScanTLB(string programPage)
-        {
-            for (int i = 0; i < _programInformation.Count; i++)
-            {
-
-                if (programPage == ((char)_programInformation[i][_storedName] + "-" + _programInformation[i][_storedPage]))
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
+       
 
         private int readScanPhysical()
         {
-
             for (int i = 0; i < _programInformation.Count; i++)
             {
-
                 if (_readProgramPage == ((char)_programInformation[i][_storedName] + "-" + _programInformation[i][_storedPage]))
                 {
+                    _programInformation[i][_storedCounterTLB]++;
                     return i;
                 }
             }
-
             return -1;
         }
 
-        private int scanPhysicalParentPages(string name)
-        {
-            string text = name.Substring(0, 1);
-            for (int i = 0; i < _programInformation.Count; i++)
-            {
+       
 
-                if (text == ((char)_programInformation[i][_storedName] + "-" + _programInformation[i][_storedPage]))
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
+      
 
         private int scanPhysicalLocalSwap(int charValue)
         {
@@ -367,12 +364,10 @@ namespace MemoryManagement
                 string pName = (char)arr[_storedName] + "-" + arr[_storedPage];
                 double pSize = arr[_storedSize];
 
-
                 int canSwap = -1;
 
-                if (radioButtonLocal.Checked) // check if program can swap himself out
+                if (radioButtonLocal.Checked) // check if program can swap itself out
                 {
-
                     canSwap = scanPhysicalLocalSwap((int)arr[_storedName]);
                 }
 
@@ -407,12 +402,10 @@ namespace MemoryManagement
                         });
                         Thread.Sleep(_sleepTime);
                     }
-
                     // add details to list
-                    _programInformation.Add(new double[] { arr[_storedName], arr[_storedPage], pSize, start, end }); // position
+                    _programInformation.Add(new double[] { arr[_storedName], arr[_storedPage], pSize, start, end, arr[_storedLocationTLB], arr[_storedCounterTLB] }); // position
                     displayMessage("Program " + pName + " returned to RAM.");
                     log.logMoveToPhysical();
-
                 }
                 else
                 {
@@ -423,42 +416,136 @@ namespace MemoryManagement
 
         }
 
+      
+
+        private void updateTLB()
+        {
+            if (_tableTLB.Count != 0)
+            {
+                _tableTLB.Sort((x, y) => y[_storedCounterTLB].CompareTo(x[_storedCounterTLB]));
+
+                int end = 6;
+                int tbl = 0;
+                if (_tableTLB.Count < 6)
+                {
+                    end = _tableTLB.Count;
+                }
+
+                for (int i = 0; i < 12; i = i + 2)
+                {
+                    if (tbl < end)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            _memoryTLB[i].Text = ((char)_tableTLB[tbl][_storedName] + "-" + _tableTLB[tbl][_storedPage]);
+                            _memoryTLB[i + 1].Text = _tableTLB[tbl][_storedCounterTLB] + "";
+                        });
+                        tbl++;
+                        Thread.Sleep(_sleepTime);
+                    }
+                    else
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            if (!_memoryTLB[i].Text.Contains("null"))
+                            {
+                                _memoryTLB[i].Text = "null";
+                            }
+                            if (!_memoryTLB[i + 1].Text.Contains("null"))
+                            {
+                                _memoryTLB[i + 1].Text = "null";
+                            }
+                        });
+                        Thread.Sleep(_sleepTime);
+                    }
+                }
+            }
+        }
+
+
+
         // MAIN METHODS, ADD OR READ PROGRAM TO MEMORY
 
         private void readProgramThread()
         {
             _readOperationActive = true;
-            int location;
-            // check tlb
+            int location = -1;
+            // check TLB
+            _tableTLB.Sort((x, y) => y[_storedCounterTLB].CompareTo(x[_storedCounterTLB]));
+
+            for (int i = 0; i < _tableTLB.Count; i++)
+            {
+                if (_readProgramPage == ((char)_tableTLB[i][_storedName] + "-" + _tableTLB[i][_storedPage]))
+                {
+                    location = i;
+                }
+            }
 
             // check memory if cant find it is page fault
-            location = readScanPhysical();
             if (location == -1)
             {
-                bool found = readScanSwap();
-                log.logPageFault();
-                if (found)
+                displayMessage("Page " + _readProgramPage + " not found in TLB.");
+                log.logFailedReadTLB();
+                location = readScanPhysical();
+                if (location == -1)
                 {
-                    location = readScanPhysical();
-                    displayMessage("Page " + _readProgramPage + " read in memory.");
-                    log.logRead();
-                    log.logPageFaultResolved();
+                    bool found = readScanSwap();
+                    log.logPageFault();
+                    if (found)
+                    {
+                        location = readScanPhysical();
+                        _tableTLB.Add(_programInformation[location]);
+                        if (_tableTLB.Count == 6)
+                        {
+                            _tableTLB.RemoveAt(_tableTLB.Count - 1);
+                        }
+                        _programInformation[location][_storedCounterTLB] = 0;
+
+                        _tableTLB.Sort((x, y) => y[_storedCounterTLB].CompareTo(x[_storedCounterTLB]));
+
+                        displayMessage("Page " + _readProgramPage + " moved to memory and read.");
+                        log.logRead();
+                        log.logPageFaultResolved();
+                    }
+                    else
+                    {
+                        displayMessage("Page " + _readProgramPage + " unavailable, it was dropped in swap.");
+                        log.logPageFaultUnresolved();
+                        log.logReadFailed();
+                    }
                 }
                 else
                 {
-                    displayMessage("Page " + _readProgramPage + " unavailable, it was dropped in swap.");
-                    log.logPageFaultUnresolved();
-                    log.logReadFailed();
+                    _tableTLB.Sort((x, y) => y[_storedCounterTLB].CompareTo(x[_storedCounterTLB]));
+                    if (_tableTLB.Count == 6)
+                    {
+                        _tableTLB.RemoveAt(_tableTLB.Count - 1);
+                    }
+
+                    _programInformation[location][_storedCounterTLB] = 0;
+                    _tableTLB.Add(_programInformation[location]);
+
+
+
+                    displayMessage("Page " + _readProgramPage + " read in memory.");
+                    log.logRead();
+                    // add fragmentation/size
                 }
             }
             else
             {
-                displayMessage("Page " + _readProgramPage + " read in memory.");
-                log.logRead();
-                // add fragmentation/size
+
+                _tableTLB[location][_storedCounterTLB]++;
+                displayMessage("Page " + _readProgramPage + " found in TLB and read in memory.");
+                log.logSuccessReadTLB();
+
+
             }
 
             // update tlb
+
+            updateTLB();
+
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -519,6 +606,8 @@ namespace MemoryManagement
             }
         }
 
+
+
         private void addProgramThread()
         {
             if (_AddProgram)
@@ -545,7 +634,9 @@ namespace MemoryManagement
                     if (start != -1)
                     {
                         addProgramToMemory(start, programName + " : " + programSize, memoryColor, _memoryPhysical); // add program to ram
-                        _programInformation.Add(new double[] { _programName, j, programSize, start, start + 1 }); // add details to list
+                        _programInformation.Add(new double[] { _programName, j, programSize, start, start + 1, start, 1 }); // add details to list
+                        log.logEntryTLB();
+                        updateTLB();
                         this.Invoke((MethodInvoker)delegate
                         {
                             comboBoxReadProgram.Items.Add(programName);
@@ -594,6 +685,23 @@ namespace MemoryManagement
         }
 
         // ALGORITHMS
+        public void removeProgramFormTLB(string programName)
+        {
+            int location = -1;
+            for (int i = 0; i < _tableTLB.Count; i++)
+            {
+                if (programName == ((char)_tableTLB[i][_storedName] + "-" + _tableTLB[i][_storedPage]))
+                {
+                    location = i;
+                }
+            }
+            if (location != -1)
+            {
+                _tableTLB.RemoveAt(location);
+            }
+            updateTLB();
+        }
+
 
         private bool FIFO(int changablePosition)
         {
@@ -602,7 +710,6 @@ namespace MemoryManagement
                 int start = scanSpace(1, _memoryStorage); // check if there is space in swape
                 while (start == -1) // remove programs till enough space is available
                 {
-
                     removeProgramFromMemory((int)_infoSwap[0][_storedStart], (int)_infoSwap[0][_storedStop], _memoryStorage); // drop program from swap if no space
                     displayMessage("Program " + (char)_infoSwap[0][_storedName] + "-" + _infoSwap[0][_storedPage] + " is dropped.");
                     _infoSwap.RemoveAt(0); // remove program from swap information
@@ -615,6 +722,8 @@ namespace MemoryManagement
 
                 // remove program from physical
                 removeProgramFromMemory((int)_programInformation[changablePosition][_storedStart], (int)_programInformation[changablePosition][_storedStop], _memoryPhysical); // remove from ram
+                removeProgramFormTLB((char)_programInformation[changablePosition][_storedName] + "-" + _programInformation[changablePosition][_storedPage]);
+
 
                 // add program to swap
                 log.logMoveToSwap();
@@ -639,8 +748,6 @@ namespace MemoryManagement
             }
         }
 
-
-
         private void ButtonLog_Click(object sender, EventArgs e)
         {
             MessageBox.Show(log.getLog(), "", MessageBoxButtons.OK, MessageBoxIcon.None);
@@ -648,7 +755,7 @@ namespace MemoryManagement
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            _sleepTime = Convert.ToInt32(comboBox1.Text);
         }
     }
 }

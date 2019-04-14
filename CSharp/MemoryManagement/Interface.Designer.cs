@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.buttonLog = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.radioButtonLocal = new System.Windows.Forms.RadioButton();
             this.checkBoxRandomRead = new System.Windows.Forms.CheckBox();
@@ -155,10 +158,8 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.buttonLog = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -173,7 +174,6 @@
             this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            this.groupBox16.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -191,6 +191,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Programs In Memory";
             // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.buttonLog);
+            this.groupBox16.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox16.Location = new System.Drawing.Point(161, 199);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(148, 48);
+            this.groupBox16.TabIndex = 6;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "Session Log";
+            // 
+            // buttonLog
+            // 
+            this.buttonLog.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonLog.Location = new System.Drawing.Point(6, 18);
+            this.buttonLog.Name = "buttonLog";
+            this.buttonLog.Size = new System.Drawing.Size(136, 23);
+            this.buttonLog.TabIndex = 0;
+            this.buttonLog.Text = "Open Log";
+            this.buttonLog.UseVisualStyleBackColor = true;
+            this.buttonLog.Click += new System.EventHandler(this.ButtonLog_Click);
+            // 
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.comboBox1);
@@ -200,7 +222,24 @@
             this.groupBox15.Size = new System.Drawing.Size(148, 48);
             this.groupBox15.TabIndex = 5;
             this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Operation Speed";
+            this.groupBox15.Text = "Speed Per Operation (ms)";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "0",
+            "50",
+            "100",
+            "200",
+            "400",
+            "800",
+            "1600"});
+            this.comboBox1.Location = new System.Drawing.Point(6, 19);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(136, 21);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // groupBox14
             // 
@@ -1485,7 +1524,7 @@
             this.groupBox10.Size = new System.Drawing.Size(317, 48);
             this.groupBox10.TabIndex = 4;
             this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Paging Algorithm Implemented";
+            this.groupBox10.Text = "Paging Algorithm";
             // 
             // label1
             // 
@@ -1495,44 +1534,6 @@
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "FIFO";
-            // 
-            // groupBox16
-            // 
-            this.groupBox16.Controls.Add(this.buttonLog);
-            this.groupBox16.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox16.Location = new System.Drawing.Point(161, 199);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(148, 48);
-            this.groupBox16.TabIndex = 6;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "Session Log";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "0 ms",
-            "50 ms",
-            "100 ms",
-            "200 ms",
-            "400 ms",
-            "800 ms"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(136, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
-            // 
-            // buttonLog
-            // 
-            this.buttonLog.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonLog.Location = new System.Drawing.Point(6, 18);
-            this.buttonLog.Name = "buttonLog";
-            this.buttonLog.Size = new System.Drawing.Size(136, 23);
-            this.buttonLog.TabIndex = 0;
-            this.buttonLog.Text = "Open Log";
-            this.buttonLog.UseVisualStyleBackColor = true;
-            this.buttonLog.Click += new System.EventHandler(this.ButtonLog_Click);
             // 
             // FormMain
             // 
@@ -1551,6 +1552,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "28410629 - Memory Application";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox16.ResumeLayout(false);
             this.groupBox15.ResumeLayout(false);
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
@@ -1573,7 +1575,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            this.groupBox16.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

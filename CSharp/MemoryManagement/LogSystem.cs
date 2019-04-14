@@ -16,6 +16,8 @@ namespace MemoryManagement
         private int pageFaultResolved = 0;
         private int pageFaultUnresolved = 0;
         private int totalEntriesTLB = 0;
+        private int readTLBSuccess = 0;
+        private int readTLBFailed = 0;
         private int movedToSwap = 0;
         private int movedToPhysical = 0;
         private int totalPages = 0;
@@ -71,6 +73,16 @@ namespace MemoryManagement
             ++totalEntriesTLB;
         }
 
+        public void logSuccessReadTLB()
+        {
+            ++readTLBSuccess;
+        }
+
+        public void logFailedReadTLB()
+        {
+            ++readTLBFailed;
+        }
+
         public void logReadFailed()
         {
             ++readFailed;
@@ -94,6 +106,8 @@ namespace MemoryManagement
             log += "\nPage faults resolved: " + pageFaultResolved;
             log += "\nPage faults unresolved: " + pageFaultUnresolved;
             log += "\nTLB total entries: " + totalEntriesTLB;
+            log += "\nTLB read, total successful: " + readTLBSuccess;
+            log += "\nTLB read, total failed: " + readTLBFailed;
             log += "\nPrograms pages moved to swap: " + movedToSwap;
             log += "\nSwap program pages moved to physical: " + movedToPhysical;
             log += "\n";
