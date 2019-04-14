@@ -39,8 +39,10 @@ namespace MemoryManagement
         private const int _storedStop = 4;
         private const int _storedLocationTLB = 5;
         private const int _storedCounterTLB = 6;
+        private const int _storedColourRed = 7;
+        private const int _storedColourGreen = 8;
+        private const int _storedColourBlue = 9;
         private string _readProgramPage;
-        private double[] _readProgramArray;
         private bool _readOperationActive = false;
         private LogSystem log = new LogSystem();
 
@@ -78,7 +80,7 @@ namespace MemoryManagement
                 comboBoxReadProgram.SelectedIndex = 0;
                 _readProgramPage = comboBoxReadProgram.SelectedItem.ToString();
             }
-            
+
             Thread thread = new Thread(new ThreadStart(readProgramThread));
             thread.Start();
         }
@@ -248,24 +250,7 @@ namespace MemoryManagement
             });
         }
 
-        private Color getColor(int name)
-        {
-            for (int i = 0; i < _memoryPhysical.Length; i++)
-            {
-                if (_memoryPhysical[i].Text.Contains((char)name))
-                {
-                    return _memoryPhysical[i].BackColor;
-                }
-            }
-            for (int i = 0; i < _memoryStorage.Length; i++)
-            {
-                if (_memoryStorage[i].Text.Contains((char)name))
-                {
-                    return _memoryStorage[i].BackColor;
-                }
-            }
-            return Color.Transparent;
-        }
+
 
         private int scanSpace(int blocksRequired, Button[] memory) // simple memory allocation with no compression
         {
@@ -302,7 +287,7 @@ namespace MemoryManagement
             return startPosition;
         }
 
-       
+
 
         private int readScanPhysical()
         {
@@ -310,16 +295,16 @@ namespace MemoryManagement
             {
                 if (_readProgramPage == ((char)_programInformation[i][_storedName] + "-" + _programInformation[i][_storedPage]))
                 {
-                    _programInformation[i][_storedCounterTLB]++;
+                    
                     return i;
                 }
             }
             return -1;
         }
 
-       
 
-      
+
+
 
         private int scanPhysicalLocalSwap(int charValue)
         {
@@ -403,7 +388,7 @@ namespace MemoryManagement
                         Thread.Sleep(_sleepTime);
                     }
                     // add details to list
-                    _programInformation.Add(new double[] { arr[_storedName], arr[_storedPage], pSize, start, end, arr[_storedLocationTLB], arr[_storedCounterTLB] }); // position
+                    _programInformation.Add(new double[] { arr[_storedName], arr[_storedPage], pSize, start, end, arr[_storedLocationTLB], arr[_storedCounterTLB], arr[_storedColourRed], arr[_storedColourGreen], arr[_storedColourBlue] }); // position
                     displayMessage("Program " + pName + " returned to RAM.");
                     log.logMoveToPhysical();
                 }
@@ -416,7 +401,7 @@ namespace MemoryManagement
 
         }
 
-      
+
 
         private void updateTLB()
         {
@@ -437,8 +422,10 @@ namespace MemoryManagement
                     {
                         this.Invoke((MethodInvoker)delegate
                         {
+                            _memoryTLB[i].BackColor = getColor((int)_tableTLB[tbl][_storedName]);
+                            _memoryTLB[i].ForeColor = Color.White;
                             _memoryTLB[i].Text = ((char)_tableTLB[tbl][_storedName] + "-" + _tableTLB[tbl][_storedPage]);
-                            _memoryTLB[i + 1].Text = _tableTLB[tbl][_storedCounterTLB] + "";
+                            _memoryTLB[i + 1].Text = _tableTLB[tbl][_storedStart] + "";
                         });
                         tbl++;
                         Thread.Sleep(_sleepTime);
@@ -449,6 +436,8 @@ namespace MemoryManagement
                         {
                             if (!_memoryTLB[i].Text.Contains("null"))
                             {
+                                _memoryTLB[i].ForeColor = Color.Black;
+                                _memoryTLB[i].BackColor = Color.LightGray;
                                 _memoryTLB[i].Text = "null";
                             }
                             if (!_memoryTLB[i + 1].Text.Contains("null"))
@@ -494,14 +483,15 @@ namespace MemoryManagement
                     if (found)
                     {
                         location = readScanPhysical();
-                        _tableTLB.Add(_programInformation[location]);
+                        _programInformation[location][_storedCounterTLB] = 0;
+                        
                         if (_tableTLB.Count == 6)
                         {
                             _tableTLB.RemoveAt(_tableTLB.Count - 1);
                         }
-                        _programInformation[location][_storedCounterTLB] = 0;
+                        _tableTLB.Add(_programInformation[location]);
 
-                        _tableTLB.Sort((x, y) => y[_storedCounterTLB].CompareTo(x[_storedCounterTLB]));
+
 
                         displayMessage("Page " + _readProgramPage + " moved to memory and read.");
                         log.logRead();
@@ -606,7 +596,34 @@ namespace MemoryManagement
             }
         }
 
+        public Color getColor(int name)
+        {
 
+            for (int i = 0; i < _programInformation.Count; i++)
+            {
+                if (_programInformation[i][_storedName] == (double)name)
+                {
+                    /*string message = "";
+                    for (int j = 0; j < _programInformation[i].Length; j++)
+                    {
+                        message += "\n " + j + " - " + _programInformation[i][j];
+                    }
+                    MessageBox.Show(message);*/
+                    return Color.FromArgb((int)_programInformation[i][_storedColourRed], (int)_programInformation[i][_storedColourGreen], (int)_programInformation[i][_storedColourBlue]);
+                }
+            }
+            for (int i = 0; i < _infoSwap.Count; i++)
+            {
+                if (_infoSwap[i][_storedName] == (double)name)
+                {
+                    return Color.FromArgb((int)_infoSwap[i][_storedColourRed], (int)_infoSwap[i][_storedColourGreen], (int)_infoSwap[i][_storedColourBlue]);
+                }
+            }
+
+            return Color.Transparent;
+
+
+        }
 
         private void addProgramThread()
         {
@@ -615,7 +632,10 @@ namespace MemoryManagement
                 // new program details
                 int programSize = determineProgramSize();
                 string programName = "";
-                Color memoryColor = Color.FromArgb(_random.Next(14, 129), _random.Next(14, 129), _random.Next(14, 129));
+                int red = _random.Next(14, 129);
+                int green = _random.Next(14, 129);
+                int blue = _random.Next(14, 129);
+                Color memoryColor = Color.FromArgb(red, green, blue);
                 int requiredMemoryBlock = (int)Math.Ceiling(programSize / _frameSize);
                 double memoryFragmentation = (programSize / _frameSize) - (int)Math.Floor(programSize / _frameSize);
 
@@ -634,7 +654,7 @@ namespace MemoryManagement
                     if (start != -1)
                     {
                         addProgramToMemory(start, programName + " : " + programSize, memoryColor, _memoryPhysical); // add program to ram
-                        _programInformation.Add(new double[] { _programName, j, programSize, start, start + 1, start, 1 }); // add details to list
+                        _programInformation.Add(new double[] { _programName, j, programSize, start, start + 1, start, 1, red, green, blue }); // add details to list
                         log.logEntryTLB();
                         updateTLB();
                         this.Invoke((MethodInvoker)delegate
@@ -665,7 +685,7 @@ namespace MemoryManagement
             else
             {
                 _isSimulation = false;
-                if (MessageBox.Show("Reset required. Press 'Yes' to reset.", "Simulation End", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show(log.getLog() + "\n\nReset required. Press 'Yes' to reset.", "Simulation End", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
@@ -698,6 +718,7 @@ namespace MemoryManagement
             if (location != -1)
             {
                 _tableTLB.RemoveAt(location);
+                displayMessage("Program " + programName + " removed from TLB and is paged.");
             }
             updateTLB();
         }
@@ -723,7 +744,7 @@ namespace MemoryManagement
                 // remove program from physical
                 removeProgramFromMemory((int)_programInformation[changablePosition][_storedStart], (int)_programInformation[changablePosition][_storedStop], _memoryPhysical); // remove from ram
                 removeProgramFormTLB((char)_programInformation[changablePosition][_storedName] + "-" + _programInformation[changablePosition][_storedPage]);
-
+                
 
                 // add program to swap
                 log.logMoveToSwap();
