@@ -48,6 +48,8 @@
             this.buttonProgramAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.buttonT10 = new System.Windows.Forms.Button();
             this.buttonT2 = new System.Windows.Forms.Button();
             this.buttonT12 = new System.Windows.Forms.Button();
@@ -158,8 +160,6 @@
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.comboBoxAlgorithm = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox16.SuspendLayout();
@@ -428,6 +428,24 @@
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "TLB";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(127, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 13);
+            this.label3.TabIndex = 46;
+            this.label3.Text = "Physical Page";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(26, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.TabIndex = 45;
+            this.label2.Text = "Virtual Page";
+            // 
             // buttonT10
             // 
             this.buttonT10.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -604,7 +622,7 @@
             this.groupBox8.Size = new System.Drawing.Size(209, 50);
             this.groupBox8.TabIndex = 4;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Physical Memory Used";
+            this.groupBox8.Text = "Total Physical Memory";
             // 
             // labelMemoryUsedP
             // 
@@ -1216,7 +1234,7 @@
             this.groupBox9.Size = new System.Drawing.Size(424, 50);
             this.groupBox9.TabIndex = 5;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Swap Memory Used";
+            this.groupBox9.Text = "Total Swap Memory";
             // 
             // labelMemoryUsedS
             // 
@@ -1527,24 +1545,6 @@
             this.groupBox10.TabIndex = 4;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Paging Algorithm";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 13);
-            this.label2.TabIndex = 45;
-            this.label2.Text = "Virtual Page";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(127, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 13);
-            this.label3.TabIndex = 46;
-            this.label3.Text = "Physical Page";
             // 
             // comboBoxAlgorithm
             // 
