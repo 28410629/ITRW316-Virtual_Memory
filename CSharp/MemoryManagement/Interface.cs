@@ -68,6 +68,8 @@ namespace MemoryManagement
         {
             if (comboBoxReadProgram.Items.Count > 0)
             {
+                log.logPageRead();
+
                 if (checkBoxRandomRead.Checked)
                 {
                     comboBoxReadProgram.SelectedIndex = _random.Next(comboBoxReadProgram.Items.Count);
@@ -418,7 +420,9 @@ namespace MemoryManagement
                     // add details to list
                     _programInformation.Add(new double[] { arr[_storedName], arr[_storedPage], pSize, start, end, arr[_storedLocationTLB], arr[_storedCounterTLB], arr[_storedColourRed], arr[_storedColourGreen], arr[_storedColourBlue] }); // position
                     displayMessage("Program " + pName + " returned to RAM.");
-                    log.logMoveToPhysical();
+                    log.logPageUnswap();
+
+
                 }
                 else
                 {
@@ -501,63 +505,53 @@ namespace MemoryManagement
             // check memory if cant find it is page fault
             if (location == -1)
             {
+                log.logTLBMiss();
                 displayMessage("Page " + _readProgramPage + " not found in TLB.");
-                log.logFailedReadTLB();
                 location = readScanPhysical();
                 if (location == -1)
                 {
+                    log.logPageFaults();
                     bool found = readScanSwap();
-                    log.logPageFault();
                     if (found)
                     {
                         location = readScanPhysical();
                         _programInformation[location][_storedCounterTLB] = 0;
-                        
                         if (_tableTLB.Count == 6)
                         {
                             _tableTLB.RemoveAt(_tableTLB.Count - 1);
                         }
                         _tableTLB.Add(_programInformation[location]);
-
-
-
+                        log.logPageFaultsResolved();
+                        log.logSuccessfulPageRead();
                         displayMessage("Page " + _readProgramPage + " moved to memory and read.");
-                        log.logRead();
-                        log.logPageFaultResolved();
                     }
                     else
                     {
+                        log.logFailedPageRead();
                         displayMessage("Page " + _readProgramPage + " unavailable, it was dropped in swap.");
-                        log.logPageFaultUnresolved();
-                        log.logReadFailed();
                     }
                 }
                 else
                 {
+
+                    log.logSuccessfulPageRead();
                     _tableTLB.Sort((x, y) => y[_storedCounterTLB].CompareTo(x[_storedCounterTLB]));
                     if (_tableTLB.Count == 6)
                     {
                         _tableTLB.RemoveAt(_tableTLB.Count - 1);
                     }
-
                     _programInformation[location][_storedCounterTLB] = 0;
                     _tableTLB.Add(_programInformation[location]);
-
-
-
                     displayMessage("Page " + _readProgramPage + " read in memory.");
-                    log.logRead();
                     // add fragmentation/size
                 }
             }
             else
             {
-
+                log.logTLBHit();
+                log.logSuccessfulPageRead();
                 _tableTLB[location][_storedCounterTLB]++;
                 displayMessage("Page " + _readProgramPage + " found in TLB and read in memory.");
-                log.logSuccessReadTLB();
-
-
             }
 
             // update tlb
@@ -652,6 +646,7 @@ namespace MemoryManagement
             if (_AddProgram)
             {
                 // new program details
+                
                 int programSize = determineProgramSize();
                 string programName = "";
                 int red = _random.Next(14, 129);
@@ -660,9 +655,11 @@ namespace MemoryManagement
                 Color memoryColor = Color.FromArgb(red, green, blue);
                 int requiredMemoryBlock = (int)Math.Ceiling(programSize / _frameSize);
                 double memoryFragmentation = (programSize / _frameSize) - (int)Math.Floor(programSize / _frameSize);
-
+                log.logFramentation(requiredMemoryBlock, programSize);
+               
                 for (int j = 0; j < requiredMemoryBlock; j++)
                 {
+                    log.logPageAdd();
                     programName = (char)_programName + "-" + j; // individual memory block name
 
                     int start = scanSpace(1, _memoryPhysical); // scan for space
@@ -687,21 +684,22 @@ namespace MemoryManagement
                     {
                         addProgramToMemory(start, programName + " : " + programSize, memoryColor, _memoryPhysical); // add program to ram
                         _programInformation.Add(new double[] { _programName, j, programSize, start, start + 1, start, 1, red, green, blue }); // add details to list
-                        log.logEntryTLB();
+               
                         updateTLB();
                         this.Invoke((MethodInvoker)delegate
                         {
                             comboBoxReadProgram.Items.Add(programName);
                         });
-                        log.logAddPage();
+                
                     }
                     else
                     {
                         displayMessage("Program " + programName + " could not be added.");
-                        log.logAddFailed();
+                
                     }
                 }
-                log.logAdd();
+
+                log.logProgramAdded();
                 displayMessage("Program " + (char)_programName + " is added to ram.");
 
                 _programName++; // increment char number for next program name
@@ -777,7 +775,7 @@ namespace MemoryManagement
                     displayMessage("Program " + (char)_infoSwap[remove][_storedName] + "-" + _infoSwap[remove][_storedPage] + " is dropped.");
                     _infoSwap.RemoveAt(remove); // remove program from swap information
                     start = scanSpace(1, _memoryStorage); // re-evaluate
-                    log.logDroppedPage();
+                    log.logPageDrop();
                 }
 
                 // determine colour of existing block in use 
@@ -789,10 +787,11 @@ namespace MemoryManagement
                 
 
                 // add program to swap
-                log.logMoveToSwap();
+          
                 addProgramToMemory(start, (char)_programInformation[changablePosition][_storedName] + "-" + _programInformation[changablePosition][_storedPage] + " : " + _programInformation[changablePosition][_storedSize], memoryColour, _memoryStorage);
 
                 // display when it is done
+                log.logPageSwap();
                 displayMessage("Program " + (char)_programInformation[changablePosition][_storedName] + "-" + _programInformation[changablePosition][_storedPage] + " is moved to swap.");
 
                 // transfer program data from physical to swap

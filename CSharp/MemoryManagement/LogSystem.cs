@@ -8,108 +8,104 @@ namespace MemoryManagement
 {
     class LogSystem
     {
-        private int addProgram = 0;
-        private int addFailed = 0;
-        private int readProgram = 0;
-        private int readFailed = 0;
-        private int pageFault = 0;
-        private int pageFaultResolved = 0;
-        private int pageFaultUnresolved = 0;
-        private int totalEntriesTLB = 0;
-        private int readTLBSuccess = 0;
-        private int readTLBFailed = 0;
-        private int movedToSwap = 0;
-        private int movedToPhysical = 0;
+        private int totalPrograms = 0;
+        private int totalPageReads = 0;
+        private int totalPageReadsSuccesful = 0;
+        private int totalPageReadsFailed = 0;
+        private int totalPageFaults = 0;
+        private int totalPageFaultsResolved = 0;
+        private int totalUnswappedPages = 0;
+        private int totalHitsTLB = 0;
+        private int totalMissesTLB = 0;
+        private int totalSwappedPages = 0;
         private int totalPages = 0;
-        private int totalPagesDropped = 0;
+        private int totalDroppedPages = 0;
+        private double totalPagesFragAmount = 0;
+        private double totalPagesFragSize = 0;
 
-        public void logAdd()
+        public void logFramentation(int pages, int programSize)
         {
-            ++addProgram;
+            totalPagesFragAmount += (double)pages;
+            totalPagesFragSize += (double)programSize;
         }
 
-        public void logRead()
+        public void logProgramAdded()
         {
-            ++readProgram;
+            totalPrograms++;
         }
 
-        public void logAddPage()
+        public void logPageRead()
         {
-            ++totalPages;
+            totalPageReads++;
         }
 
-        public void logDroppedPage()
+        public void logTLBHit()
         {
-            ++totalPagesDropped;
+            totalHitsTLB++;
         }
 
-        public void logPageFault()
+        public void logTLBMiss()
         {
-            ++pageFault;
+            totalMissesTLB++;
         }
 
-        public void logPageFaultResolved()
+        public void logSuccessfulPageRead()
         {
-            ++pageFaultResolved;
+            totalPageReadsSuccesful++;
         }
 
-        public void logPageFaultUnresolved()
+        public void logFailedPageRead()
         {
-            ++pageFaultUnresolved;
+            totalPageReadsFailed++;
         }
 
-        public void logMoveToSwap()
+        public void logPageFaultsResolved()
         {
-            ++movedToSwap;
+            totalPageFaultsResolved++;
         }
 
-        public void logMoveToPhysical()
+        public void logPageFaults()
         {
-            ++movedToPhysical;
+            totalPageFaults++;
         }
 
-        public void logEntryTLB()
+        public void logPageDrop()
         {
-            ++totalEntriesTLB;
+            totalDroppedPages++;
         }
 
-        public void logSuccessReadTLB()
+        public void logPageSwap()
         {
-            ++readTLBSuccess;
+            totalSwappedPages++;
         }
 
-        public void logFailedReadTLB()
+        public void logPageAdd()
         {
-            ++readTLBFailed;
+            totalPages++;
         }
 
-        public void logReadFailed()
+        public void logPageUnswap()
         {
-            ++readFailed;
+            totalUnswappedPages++;
         }
 
-        public void logAddFailed()
-        {
-            ++readFailed;
-        }
 
         public string getLog()
         {
             string log = "SESSION LOG DETAILS\n";
-            log += "\nPrograms added: " + addProgram;
-            log += "\nPrograms failed to add: " + addFailed;
-            log += "\nTotal pages this session: " + totalPages;
-            log += "\nTotal pages dropped this session: " + totalPagesDropped;
-            log += "\nProgram memory allocation read: " + readProgram;
-            log += "\nProgram memory allocation read failed: " + readFailed;
-            log += "\nPage faults encountered: " + pageFault;
-            log += "\nPage faults resolved: " + pageFaultResolved;
-            log += "\nPage faults unresolved: " + pageFaultUnresolved;
-            log += "\nTLB total entries: " + totalEntriesTLB;
-            log += "\nTLB read, total successful: " + readTLBSuccess;
-            log += "\nTLB read, total failed: " + readTLBFailed;
-            log += "\nPrograms pages moved to swap: " + movedToSwap;
-            log += "\nSwap program pages moved to physical: " + movedToPhysical;
+            log += "\nTotal programs added: " + totalPrograms;
+            log += "\nTotal pages: " + totalPages;
+            log += "\nTotal pages swapped: " + totalSwappedPages;
+            log += "\nTotal pages unswapped: " + totalUnswappedPages;
+            log += "\nTotal pages dropped: " + totalDroppedPages;
+            log += "\nTotal page reads: " + totalPageReads;
+            log += "\nTotal succesful page reads: " + totalPageReadsSuccesful;
+            log += "\nTotal failed page reads: " + totalPageReadsFailed;
+            log += "\nTotal page faults: " + totalPageFaults;
+            log += "\nTotal page faults resolved: " + totalPageFaultsResolved;
+            log += "\nTotal TLB hits: " + totalHitsTLB;
+            log += "\nTotal TLB misses: " + totalMissesTLB;
+            log += "\nAverage fragmentation per page: " + (totalPagesFragSize / totalPagesFragAmount);
             log += "\n";
             return log;
         }
