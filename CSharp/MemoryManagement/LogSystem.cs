@@ -105,7 +105,7 @@ namespace MemoryManagement
             log += "\nTotal page faults resolved: " + totalPageFaultsResolved;
             log += "\nTotal TLB hits: " + totalHitsTLB;
             log += "\nTotal TLB misses: " + totalMissesTLB;
-            log += "\nAverage fragmentation per page: " + (totalPagesFragSize / totalPagesFragAmount);
+            //log += "\nAverage fragmentation per page: " + (totalPagesFragSize / totalPagesFragAmount);
             log += "\n";
             return log;
         }
